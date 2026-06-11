@@ -20,8 +20,36 @@ GROUP_MEMBERS = {
     "Indre":   ["Spain", "Argentina", "Switzerland", "Norway", "New Zealand"],
     "Erin": ["France", "Belgium", "Australia", "Scotland", "Sweden"],
     "Javier":  ["England", "Mexico", "Morocco", "South Africa", "Czechia"],
-    "Gill":  ["Portugal", "Netherlands", "South Korea", "Egypt", "Türkiye"],
+    "Gillian":  ["Portugal", "Netherlands", "South Korea", "Egypt", "Türkiye"],
 }
+
+MEMBER_LOOKUP = {
+    'Brazil': 'Patrick',
+    'Germany': 'Patrick',
+    'Japan': 'Patrick',
+    'Côte d’Ivoire': 'Patrick',
+    'Ghana': 'Patrick',
+    'Spain': 'Indre',
+    'Argentina': 'Indre',
+    'Switzerland': 'Indre',
+    'Norway': 'Indre',
+    'New Zealand': 'Indre',
+    'France': 'Erin',
+    'Belgium': 'Erin',
+    'Australia': 'Erin',
+    'Scotland': 'Erin',
+    'Sweden': 'Erin',
+    'England': 'Javier',
+    'Mexico': 'Javier',
+    'Morocco': 'Javier',
+    'South Africa': 'Javier',
+    'Czechia': 'Javier',
+    'Portugal': 'Gill',
+    'Netherlands': 'Gill',
+    'South Korea': 'Gill',
+    'Egypt': 'Gill',
+    'Türkiye': 'Gill'
+  }
 
 # ─────────────────────────────────────────────────────────────────────────────
 # 2. SCORING RULES
@@ -184,6 +212,17 @@ def build_leaderboard_html(member_scores):
         </div>"""
     return html
 
+def _process_team_name(name: str):
+    if name in MEMBER_LOOKUP.keys():
+        return f"({MEMBER_LOOKUP[name]})"
+    else:
+        return ""
+    #     if home:
+    #         return f"({MEMBER_LOOKUP[name]}) {name}"
+    #     else:
+    #         return f"{name} ({MEMBER_LOOKUP[name]})"
+    # else:
+    #     return name
 
 def build_results_html():
     done = sorted([m for m in MATCHES if is_complete(m)],
@@ -198,12 +237,12 @@ def build_results_html():
         red_a = f' <span class="red-card">{"🟥"*ar}</span>' if ar else ""
         html += f"""
         <div class="fixture-card">
-          <div class="team home">{m['home']}{red_h}</div>
+          <div class="team home"><font class="member-font">{f"{_process_team_name(m['home'])} "}</font>{m['home']}{red_h}</div>
           <div class="score-col">
             <div class="score">{m['home_goals']} – {m['away_goals']}</div>
             <div class="fixture-meta">{m['date']} <span class="badge badge-ft">FT</span></div>
           </div>
-          <div class="team away">{m['away']}{red_a}</div>
+          <div class="team away">{m['away']}{red_a}<font class="member-font">{f" {_process_team_name(m['away'])}"}</font></div>
         </div>"""
     return html
 
@@ -229,12 +268,12 @@ def build_fixtures_html():
             time_str = m.get("time", "TBC")
             html += f"""
             <div class="fixture-card">
-              <div class="team home">{m['home']}</div>
+              <div class="team home"><font class="member-font">{f"{_process_team_name(m['home'])} "}</font>{m['home']}</div>
               <div class="score-col">
                 <div class="score vs">vs</div>
                 <div class="fixture-meta"><span class="badge badge-sched">{time_str}</span></div>
               </div>
-              <div class="team away">{m['away']}</div>
+              <div class="team away">{m['away']}<font class="member-font">{f" {_process_team_name(m['away'])}"}</font></div>
             </div>"""
         html += "</div>"
     return html
@@ -374,6 +413,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
   .team {{ font-size: .88rem; font-weight: 600; }}
   .team.home {{ text-align: right; }}
   .team.away {{ text-align: left; }}
+  .member-font {{ color: #6C5185; font-style: italic; }}
   .score-col {{ text-align: center; }}
   .score {{ font-size: 1.2rem; font-weight: 800; color: var(--accent); min-width: 3.5rem; }}
   .score.vs {{ font-size: .9rem; color: var(--muted); font-weight: 400; }}

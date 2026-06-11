@@ -31,6 +31,7 @@ def parse_fixtures():
         parsed_f["home"]=f["team_a"]
         parsed_f["away"]=f["team_b"]
         parsed_f["time"]=str(irl_time)
+        parsed_f["location"]=f"{f['city']}, {f['country']}"
         parsed_fixtures.append(parsed_f)
     return parsed_fixtures
 
