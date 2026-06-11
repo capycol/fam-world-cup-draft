@@ -315,7 +315,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>World Cup 2026 — Fantasy Scores</title>
+<title>World Cup 2026 — Draft Scores</title>
 <style>
   :root {{
     --bg:      #0a0e1a;
@@ -473,7 +473,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
 <body>
 
 <header>
-  <h1>⚽ World Cup 2026 — Fantasy Scores</h1>
+  <h1>⚽ World Cup 2026 — Draft Scores</h1>
   <div class="updated">Last updated: {updated}</div>
 </header>
 
@@ -488,7 +488,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
 <main>
 
 <section id="leaderboard" class="visible">
-  <h2>Fantasy standings</h2>
+  <h2>Draft standings</h2>
   <div class="leaderboard">{leaderboard_html}</div>
 </section>
 
