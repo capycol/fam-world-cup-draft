@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>World Cup 2026 — Fantasy Scores</title>
+<style>
+  :root {
+    --bg:      #0a0e1a;
+    --surface: #111827;
+    --card:    #1a2235;
+    --border:  #2a3450;
+    --accent:  #e8c84a;
+    --accent2: #4aaee8;
+    --text:    #e8eaf2;
+    --muted:   #7a8099;
+    --win:     #4CAF50;
+    --loss:    #f44336;
+    --gold:    #FFD700;
+    --silver:  #C0C0C0;
+    --bronze:  #CD7F32;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); min-height: 100vh; }
+
+  header {
+    background: linear-gradient(135deg, #0d1b2e 0%, #1a2a4a 100%);
+    border-bottom: 2px solid var(--accent);
+    padding: 1.4rem 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: .5rem;
+  }
+  header h1 { font-size: 1.3rem; font-weight: 700; color: var(--accent); }
+  header .updated { font-size: .75rem; color: var(--muted); }
+
+  nav {
+    display: flex; gap: .5rem; padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--border);
+    background: var(--surface);
+    position: sticky; top: 0; z-index: 10;
+    overflow-x: auto;
+  }
+  nav button {
+    padding: .4rem 1rem; border: 1px solid var(--border);
+    border-radius: 20px; background: transparent;
+    color: var(--muted); cursor: pointer; font-size: .83rem;
+    white-space: nowrap; transition: all .15s;
+  }
+  nav button.active, nav button:hover {
+    background: var(--accent); color: #000;
+    border-color: var(--accent); font-weight: 600;
+  }
+
+  main { max-width: 1000px; margin: 0 auto; padding: 1.5rem 1rem 3rem; }
+  section { display: none; }
+  section.visible { display: block; }
+  h2 { font-size: 1rem; font-weight: 600; margin-bottom: 1rem; color: var(--text); text-transform: uppercase; letter-spacing: .06em; }
+
+  /* ── LEADERBOARD ── */
+  .leaderboard { display: grid; gap: .85rem; }
+  .lb-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 1.1rem 1.4rem;
+    display: flex; align-items: center; gap: 1.1rem;
+    cursor: pointer; transition: border-color .15s;
+  }
+  .lb-card:hover { border-color: var(--accent2); }
+  .lb-card.rank-1 { border-color: var(--gold); }
+  .lb-card.rank-2 { border-color: var(--silver); }
+  .lb-card.rank-3 { border-color: var(--bronze); }
+  .lb-rank { font-size: 1.4rem; font-weight: 800; width: 2rem; text-align: center; color: var(--muted); }
+  .rank-1 .lb-rank { color: var(--gold); }
+  .rank-2 .lb-rank { color: var(--silver); }
+  .rank-3 .lb-rank { color: var(--bronze); }
+  .lb-info { flex: 1; min-width: 0; }
+  .lb-name { font-size: 1rem; font-weight: 600; }
+  .lb-teams { font-size: .75rem; color: var(--muted); margin-top: .2rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .lb-score { font-size: 2rem; font-weight: 800; color: var(--accent); flex-shrink: 0; }
+  .breakdown { display: none; margin-top: .8rem; border-top: 1px solid var(--border); padding-top: .7rem; }
+  .breakdown.open { display: block; }
+  .breakdown table { width: 100%; font-size: .78rem; border-collapse: collapse; }
+  .breakdown thead th { text-align: left; color: var(--muted); padding: .25rem .4rem; border-bottom: 1px solid var(--border); font-weight: 500; }
+  .breakdown tbody td { padding: .3rem .4rem; border-bottom: 1px solid #1a2540; }
+  .empty-row { color: var(--muted); font-style: italic; }
+
+  /* ── FIXTURES & RESULTS ── */
+  .results-grid { display: grid; gap: .65rem; }
+  .fixture-date-group { margin-bottom: 1.4rem; }
+  .fixture-date-group h3 {
+    font-size: .75rem; text-transform: uppercase; letter-spacing: .08em;
+    color: var(--muted); margin-bottom: .55rem; padding-bottom: .3rem;
+    border-bottom: 1px solid var(--border); font-weight: 500;
+  }
+  .fixture-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 10px; padding: .85rem 1.1rem;
+    display: grid; grid-template-columns: 1fr auto 1fr;
+    align-items: center; gap: .5rem;
+  }
+  .team { font-size: .88rem; font-weight: 600; }
+  .team.home { text-align: right; }
+  .team.away { text-align: left; }
+  .score-col { text-align: center; }
+  .score { font-size: 1.2rem; font-weight: 800; color: var(--accent); min-width: 3.5rem; }
+  .score.vs { font-size: .9rem; color: var(--muted); font-weight: 400; }
+  .fixture-meta { font-size: .7rem; color: var(--muted); margin-top: .2rem; }
+  .badge {
+    display: inline-block; padding: .12rem .45rem;
+    border-radius: 4px; font-size: .67rem; font-weight: 600;
+  }
+  .badge-ft    { background: #2a3450; color: var(--muted); }
+  .badge-sched { background: #1a2a3a; color: var(--accent2); border: 1px solid #2a3a5a; }
+
+  /* ── STANDINGS ── */
+  .group-block { margin-bottom: 1.8rem; }
+  .group-block h3 {
+    font-size: .85rem; font-weight: 700; color: var(--accent2);
+    margin-bottom: .55rem; letter-spacing: .04em; text-transform: uppercase;
+  }
+  .standings-table { width: 100%; border-collapse: collapse; font-size: .82rem; }
+  .standings-table th {
+    text-align: left; padding: .38rem .55rem;
+    color: var(--muted); border-bottom: 1px solid var(--border); font-weight: 500;
+  }
+  .standings-table td { padding: .42rem .55rem; border-bottom: 1px solid #1a2540; }
+  .standings-table tr:hover td { background: #1e2a3a; }
+  .standings-table .pts-col { font-weight: 700; color: var(--accent); }
+  .standings-table .qualify td:first-child { border-left: 3px solid var(--win); }
+
+  /* ── SCORING KEY ── */
+  .scoring-table { border-collapse: collapse; font-size: .85rem; min-width: 200px; }
+  .scoring-table th {
+    text-align: left; padding: .4rem .8rem;
+    border-bottom: 1px solid var(--border); color: var(--muted); font-weight: 500;
+  }
+  .scoring-table td { padding: .42rem .8rem; border-bottom: 1px solid #1a2540; }
+  .scoring-table tr:last-child td { border-bottom: none; }
+  .scoring-table td:last-child { font-weight: 700; text-align: right; }
+  .key-card {
+    display: inline-block; background: var(--card);
+    border: 1px solid var(--border); border-radius: 10px;
+    padding: 1rem 1.2rem; margin-bottom: 1rem;
+  }
+  .how-to { font-size: .82rem; color: var(--muted); line-height: 1.7; max-width: 540px; }
+  .how-to code {
+    background: #1e2a3a; color: var(--accent2); padding: .1rem .35rem;
+    border-radius: 3px; font-size: .8rem;
+  }
+  .how-to h3 { font-size: .85rem; color: var(--text); margin: 1rem 0 .4rem; font-weight: 600; }
+
+  /* shared */
+  .pts-pos { color: #4CAF50; font-weight: 600; }
+  .pts-neg { color: #f44336; font-weight: 600; }
+  .pts-zero { color: var(--muted); }
+  .empty { color: var(--muted); text-align: center; padding: 3rem; font-size: .88rem; }
+  .red-card { font-size: .75rem; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>⚽ World Cup 2026 — Fantasy Scores</h1>
+  <div class="updated">Last updated: 11 Jun 2026 08:50 UTC</div>
+</header>
+
+<nav>
+  <button class="active" onclick="show('leaderboard',this)">🏆 Leaderboard</button>
+  <button onclick="show('results',this)">📋 Results</button>
+  <button onclick="show('fixtures',this)">📅 Fixtures</button>
+  <button onclick="show('standings',this)">📊 Standings</button>
+  <button onclick="show('howto',this)">ℹ️ How to update</button>
+</nav>
+
+<main>
+
+<section id="leaderboard" class="visible">
+  <h2>Fantasy standings</h2>
+  <div class="leaderboard">
+        <div class="lb-card rank-1" onclick="toggleBreakdown(this)">
+          <div class="lb-rank">1</div>
+          <div class="lb-info">
+            <div class="lb-name">Patrick</div>
+            <div class="lb-teams">Brazil · Germany · Japan · Côte d’Ivoire · Ghana</div>
+            <div class="breakdown">
+              <table>
+                <thead><tr><th>Date</th><th>Match</th><th>Your team</th><th>Pts</th></tr></thead>
+                <tbody><tr><td colspan="4" class="empty-row">No scored matches yet</td></tr></tbody>
+              </table>
+            </div>
+          </div>
+          <div class="lb-score">0</div>
+        </div>
+        <div class="lb-card rank-2" onclick="toggleBreakdown(this)">
+          <div class="lb-rank">2</div>
+          <div class="lb-info">
+            <div class="lb-name">Indre</div>
+            <div class="lb-teams">Spain · Argentina · Switzerland · Norway · New Zealand</div>
+            <div class="breakdown">
+              <table>
+                <thead><tr><th>Date</th><th>Match</th><th>Your team</th><th>Pts</th></tr></thead>
+                <tbody><tr><td colspan="4" class="empty-row">No scored matches yet</td></tr></tbody>
+              </table>
+            </div>
+          </div>
+          <div class="lb-score">0</div>
+        </div>
+        <div class="lb-card rank-3" onclick="toggleBreakdown(this)">
+          <div class="lb-rank">3</div>
+          <div class="lb-info">
+            <div class="lb-name">Erin</div>
+            <div class="lb-teams">France · Belgium · Australia · Scotland · Sweden</div>
+            <div class="breakdown">
+              <table>
+                <thead><tr><th>Date</th><th>Match</th><th>Your team</th><th>Pts</th></tr></thead>
+                <tbody><tr><td colspan="4" class="empty-row">No scored matches yet</td></tr></tbody>
+              </table>
+            </div>
+          </div>
+          <div class="lb-score">0</div>
+        </div>
+        <div class="lb-card " onclick="toggleBreakdown(this)">
+          <div class="lb-rank">4</div>
+          <div class="lb-info">
+            <div class="lb-name">Javier</div>
+            <div class="lb-teams">England · Mexico · Morocco · South Africa · Czechia</div>
+            <div class="breakdown">
+              <table>
+                <thead><tr><th>Date</th><th>Match</th><th>Your team</th><th>Pts</th></tr></thead>
+                <tbody><tr><td colspan="4" class="empty-row">No scored matches yet</td></tr></tbody>
+              </table>
+            </div>
+          </div>
+          <div class="lb-score">0</div>
+        </div>
+        <div class="lb-card " onclick="toggleBreakdown(this)">
+          <div class="lb-rank">5</div>
+          <div class="lb-info">
+            <div class="lb-name">Gill</div>
+            <div class="lb-teams">Portugal · Netherlands · South Korea · Egypt · Türkiye</div>
+            <div class="breakdown">
+              <table>
+                <thead><tr><th>Date</th><th>Match</th><th>Your team</th><th>Pts</th></tr></thead>
+                <tbody><tr><td colspan="4" class="empty-row">No scored matches yet</td></tr></tbody>
+              </table>
+            </div>
+          </div>
+          <div class="lb-score">0</div>
+        </div></div>
+</section>
+
+<section id="results">
+  <h2>Completed matches</h2>
+  <div class="results-grid"><div class="empty">No completed matches yet</div></div>
+</section>
+
+<section id="fixtures">
+  <h2>Upcoming fixtures</h2>
+  <div class="fixture-date-group"><h3>Thursday, 11 June</h3>
+            <div class="fixture-card">
+              <div class="team home">Mexico</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">20:00:00</span></div>
+              </div>
+              <div class="team away">South Africa</div>
+            </div>
+            <div class="fixture-card">
+              <div class="team home">Korea Republic</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">03:00:00</span></div>
+              </div>
+              <div class="team away">Czechia</div>
+            </div></div><div class="fixture-date-group"><h3>Friday, 12 June</h3>
+            <div class="fixture-card">
+              <div class="team home">Canada</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">20:00:00</span></div>
+              </div>
+              <div class="team away">Bosnia and Herzegovina</div>
+            </div>
+            <div class="fixture-card">
+              <div class="team home">United States</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">02:00:00</span></div>
+              </div>
+              <div class="team away">Paraguay</div>
+            </div></div><div class="fixture-date-group"><h3>Saturday, 13 June</h3>
+            <div class="fixture-card">
+              <div class="team home">Haiti</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">02:00:00</span></div>
+              </div>
+              <div class="team away">Scotland</div>
+            </div>
+            <div class="fixture-card">
+              <div class="team home">Australia</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">05:00:00</span></div>
+              </div>
+              <div class="team away">Türkiye</div>
+            </div>
+            <div class="fixture-card">
+              <div class="team home">Brazil</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">23:00:00</span></div>
+              </div>
+              <div class="team away">Morocco</div>
+            </div>
+            <div class="fixture-card">
+              <div class="team home">Qatar</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">20:00:00</span></div>
+              </div>
+              <div class="team away">Switzerland</div>
+            </div></div><div class="fixture-date-group"><h3>Sunday, 14 June</h3>
+            <div class="fixture-card">
+              <div class="team home">Côte d’Ivoire</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">00:00:00</span></div>
+              </div>
+              <div class="team away">Ecuador</div>
+            </div>
+            <div class="fixture-card">
+              <div class="team home">Germany</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">18:00:00</span></div>
+              </div>
+              <div class="team away">Curaçao</div>
+            </div>
+            <div class="fixture-card">
+              <div class="team home">Netherlands</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">21:00:00</span></div>
+              </div>
+              <div class="team away">Japan</div>
+            </div>
+            <div class="fixture-card">
+              <div class="team home">Sweden</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">03:00:00</span></div>
+              </div>
+              <div class="team away">Tunisia</div>
+            </div></div><div class="fixture-date-group"><h3>Monday, 15 June</h3>
+            <div class="fixture-card">
+              <div class="team home">Saudi Arabia</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">23:00:00</span></div>
+              </div>
+              <div class="team away">Uruguay</div>
+            </div>
+            <div class="fixture-card">
+              <div class="team home">Spain</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">17:00:00</span></div>
+              </div>
+              <div class="team away">Cabo Verde</div>
+            </div>
+            <div class="fixture-card">
+              <div class="team home">Iran</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">02:00:00</span></div>
+              </div>
+              <div class="team away">New Zealand</div>
+            </div>
+            <div class="fixture-card">
+              <div class="team home">Belgium</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">20:00:00</span></div>
+              </div>
+              <div class="team away">Egypt</div>
+            </div></div><div class="fixture-date-group"><h3>Tuesday, 16 June</h3>
+            <div class="fixture-card">
+              <div class="team home">France</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">20:00:00</span></div>
+              </div>
+              <div class="team away">Senegal</div>
+            </div>
+            <div class="fixture-card">
+              <div class="team home">Iraq</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">23:00:00</span></div>
+              </div>
+              <div class="team away">Norway</div>
+            </div>
+            <div class="fixture-card">
+              <div class="team home">Argentina</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">02:00:00</span></div>
+              </div>
+              <div class="team away">Algeria</div>
+            </div>
+            <div class="fixture-card">
+              <div class="team home">Austria</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">05:00:00</span></div>
+              </div>
+              <div class="team away">Jordan</div>
+            </div></div><div class="fixture-date-group"><h3>Wednesday, 17 June</h3>
+            <div class="fixture-card">
+              <div class="team home">Ghana</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">00:00:00</span></div>
+              </div>
+              <div class="team away">Panama</div>
+            </div>
+            <div class="fixture-card">
+              <div class="team home">England</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">21:00:00</span></div>
+              </div>
+              <div class="team away">Croatia</div>
+            </div>
+            <div class="fixture-card">
+              <div class="team home">Portugal</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">18:00:00</span></div>
+              </div>
+              <div class="team away">Congo DR</div>
+            </div>
+            <div class="fixture-card">
+              <div class="team home">Uzbekistan</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">03:00:00</span></div>
+              </div>
+              <div class="team away">Colombia</div>
+            </div></div><div class="fixture-date-group"><h3>Thursday, 18 June</h3>
+            <div class="fixture-card">
+              <div class="team home">Czechia</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">17:00:00</span></div>
+              </div>
+              <div class="team away">South Africa</div>
+            </div>
+            <div class="fixture-card">
+              <div class="team home">Switzerland</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">20:00:00</span></div>
+              </div>
+              <div class="team away">Bosnia and Herzegovina</div>
+            </div>
+            <div class="fixture-card">
+              <div class="team home">Canada</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">23:00:00</span></div>
+              </div>
+              <div class="team away">Qatar</div>
+            </div>
+            <div class="fixture-card">
+              <div class="team home">Mexico</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">02:00:00</span></div>
+              </div>
+              <div class="team away">Korea Republic</div>
+            </div></div><div class="fixture-date-group"><h3>Friday, 19 June</h3>
+            <div class="fixture-card">
+              <div class="team home">Brazil</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">02:00:00</span></div>
+              </div>
+              <div class="team away">Haiti</div>
+            </div>
+            <div class="fixture-card">
+              <div class="team home">Scotland</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">23:00:00</span></div>
+              </div>
+              <div class="team away">Morocco</div>
+            </div>
+            <div class="fixture-card">
+              <div class="team home">Türkiye</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">04:00:00</span></div>
+              </div>
+              <div class="team away">Paraguay</div>
+            </div>
+            <div class="fixture-card">
+              <div class="team home">United States</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">20:00:00</span></div>
+              </div>
+              <div class="team away">Australia</div>
+            </div></div><div class="fixture-date-group"><h3>Saturday, 20 June</h3>
+            <div class="fixture-card">
+              <div class="team home">Germany</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">21:00:00</span></div>
+              </div>
+              <div class="team away">Côte d’Ivoire</div>
+            </div>
+            <div class="fixture-card">
+              <div class="team home">Ecuador</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">01:00:00</span></div>
+              </div>
+              <div class="team away">Curaçao</div>
+            </div>
+            <div class="fixture-card">
+              <div class="team home">Netherlands</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">18:00:00</span></div>
+              </div>
+              <div class="team away">Sweden</div>
+            </div>
+            <div class="fixture-card">
+              <div class="team home">Tunisia</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">05:00:00</span></div>
+              </div>
+              <div class="team away">Japan</div>
+            </div></div><div class="fixture-date-group"><h3>Sunday, 21 June</h3>
+            <div class="fixture-card">
+              <div class="team home">Uruguay</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">23:00:00</span></div>
+              </div>
+              <div class="team away">Cabo Verde</div>
+            </div>
+            <div class="fixture-card">
+              <div class="team home">Spain</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">17:00:00</span></div>
+              </div>
+              <div class="team away">Saudi Arabia</div>
+            </div>
+            <div class="fixture-card">
+              <div class="team home">Belgium</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">20:00:00</span></div>
+              </div>
+              <div class="team away">Iran</div>
+            </div>
+            <div class="fixture-card">
+              <div class="team home">New Zealand</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">02:00:00</span></div>
+              </div>
+              <div class="team away">Egypt</div>
+            </div></div><div class="fixture-date-group"><h3>Monday, 22 June</h3>
+            <div class="fixture-card">
+              <div class="team home">Norway</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">01:00:00</span></div>
+              </div>
+              <div class="team away">Senegal</div>
+            </div>
+            <div class="fixture-card">
+              <div class="team home">France</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">22:00:00</span></div>
+              </div>
+              <div class="team away">Iraq</div>
+            </div>
+            <div class="fixture-card">
+              <div class="team home">Argentina</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">18:00:00</span></div>
+              </div>
+              <div class="team away">Austria</div>
+            </div>
+            <div class="fixture-card">
+              <div class="team home">Jordan</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">04:00:00</span></div>
+              </div>
+              <div class="team away">Algeria</div>
+            </div></div><div class="fixture-date-group"><h3>Tuesday, 23 June</h3>
+            <div class="fixture-card">
+              <div class="team home">England</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">21:00:00</span></div>
+              </div>
+              <div class="team away">Ghana</div>
+            </div>
+            <div class="fixture-card">
+              <div class="team home">Panama</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">00:00:00</span></div>
+              </div>
+              <div class="team away">Croatia</div>
+            </div>
+            <div class="fixture-card">
+              <div class="team home">Portugal</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">18:00:00</span></div>
+              </div>
+              <div class="team away">Uzbekistan</div>
+            </div>
+            <div class="fixture-card">
+              <div class="team home">Colombia</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">03:00:00</span></div>
+              </div>
+              <div class="team away">Congo DR</div>
+            </div></div><div class="fixture-date-group"><h3>Wednesday, 24 June</h3>
+            <div class="fixture-card">
+              <div class="team home">Scotland</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">23:00:00</span></div>
+              </div>
+              <div class="team away">Brazil</div>
+            </div>
+            <div class="fixture-card">
+              <div class="team home">Morocco</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">23:00:00</span></div>
+              </div>
+              <div class="team away">Haiti</div>
+            </div>
+            <div class="fixture-card">
+              <div class="team home">Switzerland</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">20:00:00</span></div>
+              </div>
+              <div class="team away">Canada</div>
+            </div>
+            <div class="fixture-card">
+              <div class="team home">Bosnia and Herzegovina</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">20:00:00</span></div>
+              </div>
+              <div class="team away">Qatar</div>
+            </div>
+            <div class="fixture-card">
+              <div class="team home">Czechia</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">02:00:00</span></div>
+              </div>
+              <div class="team away">Mexico</div>
+            </div>
+            <div class="fixture-card">
+              <div class="team home">South Africa</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">02:00:00</span></div>
+              </div>
+              <div class="team away">Korea Republic</div>
+            </div></div><div class="fixture-date-group"><h3>Thursday, 25 June</h3>
+            <div class="fixture-card">
+              <div class="team home">Curaçao</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">21:00:00</span></div>
+              </div>
+              <div class="team away">Côte d’Ivoire</div>
+            </div>
+            <div class="fixture-card">
+              <div class="team home">Ecuador</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">21:00:00</span></div>
+              </div>
+              <div class="team away">Germany</div>
+            </div>
+            <div class="fixture-card">
+              <div class="team home">Japan</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">00:00:00</span></div>
+              </div>
+              <div class="team away">Sweden</div>
+            </div>
+            <div class="fixture-card">
+              <div class="team home">Tunisia</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">00:00:00</span></div>
+              </div>
+              <div class="team away">Netherlands</div>
+            </div>
+            <div class="fixture-card">
+              <div class="team home">Türkiye</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">03:00:00</span></div>
+              </div>
+              <div class="team away">United States</div>
+            </div>
+            <div class="fixture-card">
+              <div class="team home">Paraguay</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">03:00:00</span></div>
+              </div>
+              <div class="team away">Australia</div>
+            </div></div><div class="fixture-date-group"><h3>Friday, 26 June</h3>
+            <div class="fixture-card">
+              <div class="team home">Norway</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">20:00:00</span></div>
+              </div>
+              <div class="team away">France</div>
+            </div>
+            <div class="fixture-card">
+              <div class="team home">Senegal</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">20:00:00</span></div>
+              </div>
+              <div class="team away">Iraq</div>
+            </div>
+            <div class="fixture-card">
+              <div class="team home">Egypt</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">04:00:00</span></div>
+              </div>
+              <div class="team away">Iran</div>
+            </div>
+            <div class="fixture-card">
+              <div class="team home">New Zealand</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">04:00:00</span></div>
+              </div>
+              <div class="team away">Belgium</div>
+            </div>
+            <div class="fixture-card">
+              <div class="team home">Cabo Verde</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">01:00:00</span></div>
+              </div>
+              <div class="team away">Saudi Arabia</div>
+            </div>
+            <div class="fixture-card">
+              <div class="team home">Uruguay</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">01:00:00</span></div>
+              </div>
+              <div class="team away">Spain</div>
+            </div></div><div class="fixture-date-group"><h3>Saturday, 27 June</h3>
+            <div class="fixture-card">
+              <div class="team home">Panama</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">22:00:00</span></div>
+              </div>
+              <div class="team away">England</div>
+            </div>
+            <div class="fixture-card">
+              <div class="team home">Croatia</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">22:00:00</span></div>
+              </div>
+              <div class="team away">Ghana</div>
+            </div>
+            <div class="fixture-card">
+              <div class="team home">Algeria</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">03:00:00</span></div>
+              </div>
+              <div class="team away">Austria</div>
+            </div>
+            <div class="fixture-card">
+              <div class="team home">Jordan</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">03:00:00</span></div>
+              </div>
+              <div class="team away">Argentina</div>
+            </div>
+            <div class="fixture-card">
+              <div class="team home">Colombia</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">00:30:00</span></div>
+              </div>
+              <div class="team away">Portugal</div>
+            </div>
+            <div class="fixture-card">
+              <div class="team home">Congo DR</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">00:30:00</span></div>
+              </div>
+              <div class="team away">Uzbekistan</div>
+            </div></div><div class="fixture-date-group"><h3>Sunday, 28 June</h3>
+            <div class="fixture-card">
+              <div class="team home">Group A Runner-up</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">20:00:00</span></div>
+              </div>
+              <div class="team away">Group B Runner-up</div>
+            </div></div><div class="fixture-date-group"><h3>Monday, 29 June</h3>
+            <div class="fixture-card">
+              <div class="team home">Group E Winner</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">21:30:00</span></div>
+              </div>
+              <div class="team away">Group A/B/C/D/F 3rd Place</div>
+            </div>
+            <div class="fixture-card">
+              <div class="team home">Group F Winner</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">02:00:00</span></div>
+              </div>
+              <div class="team away">Group C Runner-up</div>
+            </div>
+            <div class="fixture-card">
+              <div class="team home">Group C Winner</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">18:00:00</span></div>
+              </div>
+              <div class="team away">Group F Runner-up</div>
+            </div></div><div class="fixture-date-group"><h3>Tuesday, 30 June</h3>
+            <div class="fixture-card">
+              <div class="team home">Group I Winner</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">22:00:00</span></div>
+              </div>
+              <div class="team away">Group C/D/F/G/H 3rd Place</div>
+            </div>
+            <div class="fixture-card">
+              <div class="team home">Group E Runner-up</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">18:00:00</span></div>
+              </div>
+              <div class="team away">Group I Runner-up</div>
+            </div>
+            <div class="fixture-card">
+              <div class="team home">Group A Winner</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">02:00:00</span></div>
+              </div>
+              <div class="team away">Group C/E/F/H/I 3rd Place</div>
+            </div></div><div class="fixture-date-group"><h3>Wednesday, 1 July</h3>
+            <div class="fixture-card">
+              <div class="team home">Group L Winner</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">17:00:00</span></div>
+              </div>
+              <div class="team away">Group E/H/I/J/K 3rd Place</div>
+            </div>
+            <div class="fixture-card">
+              <div class="team home">Group D Winner</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">01:00:00</span></div>
+              </div>
+              <div class="team away">Group B/E/F/I/J 3rd Place</div>
+            </div>
+            <div class="fixture-card">
+              <div class="team home">Group G Winner</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">21:00:00</span></div>
+              </div>
+              <div class="team away">Group A/E/H/I/J 3rd Place</div>
+            </div></div><div class="fixture-date-group"><h3>Thursday, 2 July</h3>
+            <div class="fixture-card">
+              <div class="team home">Group K Runner-up</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">00:00:00</span></div>
+              </div>
+              <div class="team away">Group L Runner-up</div>
+            </div>
+            <div class="fixture-card">
+              <div class="team home">Group H Winner</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">20:00:00</span></div>
+              </div>
+              <div class="team away">Group J Runner-up</div>
+            </div>
+            <div class="fixture-card">
+              <div class="team home">Group B Winner</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">04:00:00</span></div>
+              </div>
+              <div class="team away">Group E/F/G/I/J 3rd Place</div>
+            </div></div><div class="fixture-date-group"><h3>Friday, 3 July</h3>
+            <div class="fixture-card">
+              <div class="team home">Group J Winner</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">23:00:00</span></div>
+              </div>
+              <div class="team away">Group H Runner-up</div>
+            </div>
+            <div class="fixture-card">
+              <div class="team home">Group K Winner</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">02:30:00</span></div>
+              </div>
+              <div class="team away">Group D/E/I/J/L 3rd Place</div>
+            </div>
+            <div class="fixture-card">
+              <div class="team home">Group D Runner-up</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">19:00:00</span></div>
+              </div>
+              <div class="team away">Group G Runner-up</div>
+            </div></div><div class="fixture-date-group"><h3>Saturday, 4 July</h3>
+            <div class="fixture-card">
+              <div class="team home">Match 74 Winner</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">22:00:00</span></div>
+              </div>
+              <div class="team away">Match 77 Winner</div>
+            </div>
+            <div class="fixture-card">
+              <div class="team home">Match 73 Winner</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">18:00:00</span></div>
+              </div>
+              <div class="team away">Match 75 Winner</div>
+            </div></div><div class="fixture-date-group"><h3>Sunday, 5 July</h3>
+            <div class="fixture-card">
+              <div class="team home">Match 76 Winner</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">21:00:00</span></div>
+              </div>
+              <div class="team away">Match 78 Winner</div>
+            </div>
+            <div class="fixture-card">
+              <div class="team home">Match 79 Winner</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">01:00:00</span></div>
+              </div>
+              <div class="team away">Match 80 Winner</div>
+            </div></div><div class="fixture-date-group"><h3>Monday, 6 July</h3>
+            <div class="fixture-card">
+              <div class="team home">Match 83 Winner</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">20:00:00</span></div>
+              </div>
+              <div class="team away">Match 84 Winner</div>
+            </div>
+            <div class="fixture-card">
+              <div class="team home">Match 81 Winner</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">01:00:00</span></div>
+              </div>
+              <div class="team away">Match 82 Winner</div>
+            </div></div><div class="fixture-date-group"><h3>Tuesday, 7 July</h3>
+            <div class="fixture-card">
+              <div class="team home">Match 86 Winner</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">17:00:00</span></div>
+              </div>
+              <div class="team away">Match 88 Winner</div>
+            </div>
+            <div class="fixture-card">
+              <div class="team home">Match 85 Winner</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">21:00:00</span></div>
+              </div>
+              <div class="team away">Match 87 Winner</div>
+            </div></div><div class="fixture-date-group"><h3>Thursday, 9 July</h3>
+            <div class="fixture-card">
+              <div class="team home">Match 89 Winner</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">21:00:00</span></div>
+              </div>
+              <div class="team away">Match 90 Winner</div>
+            </div></div><div class="fixture-date-group"><h3>Friday, 10 July</h3>
+            <div class="fixture-card">
+              <div class="team home">Match 93 Winner</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">20:00:00</span></div>
+              </div>
+              <div class="team away">Match 94 Winner</div>
+            </div></div><div class="fixture-date-group"><h3>Saturday, 11 July</h3>
+            <div class="fixture-card">
+              <div class="team home">Match 91 Winner</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">22:00:00</span></div>
+              </div>
+              <div class="team away">Match 92 Winner</div>
+            </div>
+            <div class="fixture-card">
+              <div class="team home">Match 95 Winner</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">02:00:00</span></div>
+              </div>
+              <div class="team away">Match 96 Winner</div>
+            </div></div><div class="fixture-date-group"><h3>Tuesday, 14 July</h3>
+            <div class="fixture-card">
+              <div class="team home">Match 97 Winner</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">20:00:00</span></div>
+              </div>
+              <div class="team away">Match 98 Winner</div>
+            </div></div><div class="fixture-date-group"><h3>Wednesday, 15 July</h3>
+            <div class="fixture-card">
+              <div class="team home">Match 99 Winner</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">20:00:00</span></div>
+              </div>
+              <div class="team away">Match 100 Winner</div>
+            </div></div><div class="fixture-date-group"><h3>Saturday, 18 July</h3>
+            <div class="fixture-card">
+              <div class="team home">Match 101 Loser</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">22:00:00</span></div>
+              </div>
+              <div class="team away">Match 102 Loser</div>
+            </div></div><div class="fixture-date-group"><h3>Sunday, 19 July</h3>
+            <div class="fixture-card">
+              <div class="team home">Match 101 Winner</div>
+              <div class="score-col">
+                <div class="score vs">vs</div>
+                <div class="fixture-meta"><span class="badge badge-sched">20:00:00</span></div>
+              </div>
+              <div class="team away">Match 102 Winner</div>
+            </div></div>
+</section>
+
+<section id="howto">
+  <h2>Scoring key &amp; how to update</h2>
+  <div class="key-card"><table class="scoring-table"><thead>
+        <tr><th>Event</th><th>Points</th></tr></thead><tbody><tr><td>Win</td><td class='pts-pos'>+3</td></tr><tr><td>Draw</td><td class='pts-pos'>+1</td></tr><tr><td>Loss</td><td class='pts-zero'>+0</td></tr><tr><td>Clean Sheet</td><td class='pts-pos'>+1</td></tr><tr><td>Goal</td><td class='pts-pos'>+1</td></tr><tr><td>Red Card</td><td class='pts-neg'>-1</td></tr></tbody></table></div>
+
+  <div class="how-to">
+    <h3>Adding a result</h3>
+    Open <code>worldcup_dashboard.py</code> and find the <code>MATCHES</code> list.
+    For a match that has been played, add a dict with <code>home_goals</code> and <code>away_goals</code>:
+    <br><br>
+    <code>{"date":"2026-06-19","home":"Brazil","away":"Argentina","home_goals":2,"away_goals":1},</code>
+    <br><br>
+    If a team received red cards, add <code>home_red_cards</code> or <code>away_red_cards</code>:
+    <br><br>
+    <code>{"date":"2026-06-19","home":"England","away":"France","home_goals":1,"away_goals":1,"home_red_cards":1},</code>
+
+    <h3>Adding an upcoming match</h3>
+    Just omit the goals — the page will show it under Fixtures:
+    <br><br>
+    <code>{"date":"2026-06-22","home":"Spain","away":"Germany"},</code>
+    <br><br>
+    You can also add an optional <code>"time":"20:00 UTC"</code> field.
+
+    <h3>Regenerating the page</h3>
+    Run <code>python worldcup_dashboard.py</code> — it overwrites <code>index.html</code>.
+    Commit and push to GitHub Pages and the link updates instantly.
+  </div>
+</section>
+
+</main>
+
+<script>
+function show(id, btn) {
+  document.querySelectorAll('section').forEach(s => s.classList.remove('visible'));
+  document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('visible');
+  btn.classList.add('active');
+}
+function toggleBreakdown(el) {
+  el.querySelector('.breakdown').classList.toggle('open');
+}
+</script>
+</body>
+</html>
