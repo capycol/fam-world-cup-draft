@@ -217,12 +217,6 @@ def _process_team_name(name: str):
         return f"({MEMBER_LOOKUP[name]})"
     else:
         return ""
-    #     if home:
-    #         return f"({MEMBER_LOOKUP[name]}) {name}"
-    #     else:
-    #         return f"{name} ({MEMBER_LOOKUP[name]})"
-    # else:
-    #     return name
 
 def build_results_html():
     done = sorted([m for m in MATCHES if is_complete(m)],
@@ -502,6 +496,11 @@ HTML_TEMPLATE = """<!DOCTYPE html>
   {fixtures_html}
 </section>
 
+<section id="standings">
+  <h2>Group standings</h2>
+  {standings_html}
+</section>
+
 <section id="howto">
   <h2>Scoring key &amp; how to update</h2>
   <div class="key-card">{scoring_key_html}</div>
@@ -556,6 +555,7 @@ def main():
         leaderboard_html = build_leaderboard_html(member_scores),
         results_html     = build_results_html(),
         fixtures_html    = build_fixtures_html(),
+        standings_html   = build_standings_html(),
         scoring_key_html = build_scoring_key_html(),
     )
 
@@ -571,14 +571,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
-# to add standings back
-# -------------
-# ADD THIS at 464:
-# <section id="standings">
-#   <h2>Group standings</h2>
-#   {standings_html}
-# </section>
-# ADD THIS at 519
-# standings_html   = build_standings_html(),
