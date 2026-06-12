@@ -51,6 +51,56 @@ MEMBER_LOOKUP = {
     'Türkiye': 'Gill'
   }
 
+COUNTRIES = [
+    "Haiti",
+    "Türkiye",
+    "Ecuador",
+    "Egypt",
+    "Croatia",
+    "Korea Republic",
+    "Brazil",
+    "Canada",
+    "Congo DR",
+    "Qatar",
+    "Argentina",
+    "Portugal",
+    "New Zealand",
+    "Curaçao",
+    "Côte d’Ivoire",
+    "Spain",
+    "Ghana",
+    "Paraguay",
+    "Scotland",
+    "Netherlands",
+    "Austria",
+    "Morocco",
+    "Algeria",
+    "Norway",
+    "South Africa",
+    "Sweden",
+    "Senegal",
+    "Czechia",
+    "Bosnia and Herzegovina",
+    "Germany",
+    "Cabo Verde",
+    "Uzbekistan",
+    "Switzerland",
+    "Colombia",
+    "Australia",
+    "Uruguay",
+    "Belgium",
+    "Iraq",
+    "Tunisia",
+    "Mexico",
+    "Japan",
+    "United States",
+    "Jordan",
+    "Iran",
+    "England",
+    "France",
+    "Saudi Arabia",
+    "Panama"
+]
 # ─────────────────────────────────────────────────────────────────────────────
 # 2. SCORING RULES
 # ─────────────────────────────────────────────────────────────────────────────
@@ -148,7 +198,7 @@ def build_member_scores():
 
 def build_group_standings():
     """Derive group standings purely from MATCHES data."""
-    record = defaultdict(lambda: {"P":0,"W":0,"D":0,"L":0,"GF":0,"GA":0,"GD":0,"Pts":0})
+    record = defaultdict(lambda: {"P":0,"W":0,"D":0,"L":0,"GF":0,"GA":0,"GD":0,"Red Cards":0,"Pts":0})
     groups = defaultdict(set)
 
     for m in MATCHES:
@@ -157,15 +207,20 @@ def build_group_standings():
         if not is_complete(m):
             continue
         hg, ag = m["home_goals"], m["away_goals"]
-        for team, scored, conceded in [(m["home"],hg,ag),(m["away"],ag,hg)]:
-            r = record[team]
-            r["P"]  += 1
-            r["GF"] += scored
-            r["GA"] += conceded
-            r["GD"] += scored - conceded
-            if scored > conceded:   r["W"]+=1; r["Pts"]+=3
-            elif scored == conceded: r["D"]+=1; r["Pts"]+=1
-            else:                    r["L"]+=1
+        h_rc, a_rc = m["home_red_cards"], m["away_red_cards"]
+        for team, scored, conceded, red_cards in [(m["home"],hg,ag,h_rc),(m["away"],ag,hg,a_rc)]:
+            if team in COUNTRIES:
+              r = record[team]
+              r["P"]  += 1
+              r["GF"] += scored
+              r["Pts"] += scored
+              r["Red Cards"] += red_cards
+              r["Pts"] -= red_cards
+              r["GA"] += conceded
+              r["GD"] += scored - conceded
+              if scored > conceded:   r["W"]+=1; r["Pts"]+=3
+              elif scored == conceded: r["D"]+=1; r["Pts"]+=1
+              else:                    r["L"]+=1
 
     result = {}
     for grp, teams in groups.items():
