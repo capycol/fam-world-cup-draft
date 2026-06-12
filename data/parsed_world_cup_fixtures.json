@@ -15,7 +15,11 @@
         "home": "Korea Republic",
         "away": "Czechia",
         "time": "03:00",
-        "location": "Guadalajara, Mexico"
+        "location": "Guadalajara, Mexico",
+        "home_goals":2,
+        "away_goals":1,
+        "home_red_cards":0,
+        "away_red_cards":0
     },
     {
         "date": "2026-06-12",

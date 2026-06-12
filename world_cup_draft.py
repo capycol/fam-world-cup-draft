@@ -20,7 +20,7 @@ GROUP_MEMBERS = {
     "Indre":   ["Spain", "Argentina", "Switzerland", "Norway", "New Zealand"],
     "Erin": ["France", "Belgium", "Australia", "Scotland", "Sweden"],
     "Javier":  ["England", "Mexico", "Morocco", "South Africa", "Czechia"],
-    "Gillian":  ["Portugal", "Netherlands", "South Korea", "Egypt", "Türkiye"],
+    "Gillian":  ["Portugal", "Netherlands", "Korea Republic", "Egypt", "Türkiye"],
 }
 
 MEMBER_LOOKUP = {
@@ -46,7 +46,7 @@ MEMBER_LOOKUP = {
     'Czechia': 'Javier',
     'Portugal': 'Gill',
     'Netherlands': 'Gill',
-    'South Korea': 'Gill',
+    'Korea Republic': 'Gill',
     'Egypt': 'Gill',
     'Türkiye': 'Gill'
   }
