@@ -202,14 +202,14 @@ def build_group_standings():
     groups = defaultdict(set)
 
     for m in MATCHES:
-        grp = m.get("group", "Group Stage")
-        groups[grp].update([m["home"], m["away"]])
-        if not is_complete(m):
-            continue
-        hg, ag = m["home_goals"], m["away_goals"]
-        h_rc, a_rc = m["home_red_cards"], m["away_red_cards"]
-        for team, scored, conceded, red_cards in [(m["home"],hg,ag,h_rc),(m["away"],ag,hg,a_rc)]:
-            if team in COUNTRIES:
+        if m["home"] in COUNTRIES and m["away"] in COUNTRIES:
+          grp = m.get("group", "Group Stage")
+          groups[grp].update([m["home"], m["away"]])
+          if not is_complete(m):
+              continue
+          hg, ag = m["home_goals"], m["away_goals"]
+          h_rc, a_rc = m["home_red_cards"], m["away_red_cards"]
+          for team, scored, conceded, red_cards in [(m["home"],hg,ag,h_rc),(m["away"],ag,hg,a_rc)]:
               r = record[team]
               r["P"]  += 1
               r["GF"] += scored
