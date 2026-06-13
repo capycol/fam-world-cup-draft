@@ -7,7 +7,7 @@ Usage:
     → generates index.html
 """
 
-from datetime import datetime, timezone
+from datetime import datetime, timezone, time
 from collections import defaultdict
 from data.data_processor import PARSED_WC_FIXTURES_PATH
 import json
@@ -275,7 +275,7 @@ def _process_team_name(name: str):
 
 def build_results_html():
     done = sorted([m for m in MATCHES if is_complete(m)],
-                  key=lambda m: m["date"], reverse=True)
+                  key=lambda m: (m["date"], m["time"]), reverse=True)
     if not done:
         return '<div class="empty">No completed matches yet</div>'
     html = ""
@@ -285,11 +285,12 @@ def build_results_html():
         red_h = f' <span class="red-card">{"🟥"*hr}</span>' if hr else ""
         red_a = f' <span class="red-card">{"🟥"*ar}</span>' if ar else ""
         html += f"""
+        <div class="fixture location">{m["location"]}</div>
         <div class="fixture-card">
           <div class="team home"><font class="member-font">{f"{_process_team_name(m['home'])} "}</font>{m['home']}{red_h}</div>
           <div class="score-col">
             <div class="score">{m['home_goals']} – {m['away_goals']}</div>
-            <div class="fixture-meta">{m['date']} <span class="badge badge-ft">FT</span></div>
+            <div class="fixture-meta">{m['date']}, {m['time']} <span class="badge badge-ft">FT</span></div>
           </div>
           <div class="team away">{m['away']}{red_a}<font class="member-font">{f" {_process_team_name(m['away'])}"}</font></div>
         </div>"""
@@ -316,6 +317,7 @@ def build_fixtures_html():
         for m in by_date[date]:
             time_str = m.get("time", "TBC")
             html += f"""
+            <div class="fixture location">{m["location"]}</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font">{f"{_process_team_name(m['home'])} "}</font>{m['home']}</div>
               <div class="score-col">
@@ -466,6 +468,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
   .score-col {{ text-align: center; }}
   .score {{ font-size: 1.2rem; font-weight: 800; color: var(--accent); min-width: 3.5rem; }}
   .score.vs {{ font-size: .9rem; color: var(--muted); font-weight: 400; }}
+  .fixture.location {{ font-size: .9rem; color: var(--muted); font-weight: 400; text-align: center; padding-top: .50rem}}
   .fixture-meta {{ font-size: .7rem; color: var(--muted); margin-top: .2rem; }}
   .badge {{
     display: inline-block; padding: .12rem .45rem;

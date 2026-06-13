@@ -105,6 +105,7 @@
   .score-col { text-align: center; }
   .score { font-size: 1.2rem; font-weight: 800; color: var(--accent); min-width: 3.5rem; }
   .score.vs { font-size: .9rem; color: var(--muted); font-weight: 400; }
+  .fixture.location { font-size: .9rem; color: var(--muted); font-weight: 400; text-align: center; padding-top: .50rem}
   .fixture-meta { font-size: .7rem; color: var(--muted); margin-top: .2rem; }
   .badge {
     display: inline-block; padding: .12rem .45rem;
@@ -162,7 +163,7 @@
 
 <header>
   <h1>⚽ World Cup 2026 — Draft Scores</h1>
-  <div class="updated">Last updated: 13 Jun 2026 09:06 UTC</div>
+  <div class="updated">Last updated: 13 Jun 2026 09:25 UTC</div>
 </header>
 
 <nav>
@@ -253,35 +254,39 @@
 <section id="results">
   <h2>Completed matches</h2>
   <div class="results-grid">
+        <div class="fixture location">Los Angeles, United States</div>
         <div class="fixture-card">
           <div class="team home"><font class="member-font"> </font>United States</div>
           <div class="score-col">
             <div class="score">4 – 1</div>
-            <div class="fixture-meta">2026-06-13 <span class="badge badge-ft">FT</span></div>
+            <div class="fixture-meta">2026-06-13, 02:00 <span class="badge badge-ft">FT</span></div>
           </div>
           <div class="team away">Paraguay<font class="member-font"> </font></div>
         </div>
-        <div class="fixture-card">
-          <div class="team home"><font class="member-font">(Gill) </font>Korea Republic</div>
-          <div class="score-col">
-            <div class="score">2 – 1</div>
-            <div class="fixture-meta">2026-06-12 <span class="badge badge-ft">FT</span></div>
-          </div>
-          <div class="team away">Czechia<font class="member-font"> (Javier)</font></div>
-        </div>
+        <div class="fixture location">Toronto, Canada</div>
         <div class="fixture-card">
           <div class="team home"><font class="member-font"> </font>Canada</div>
           <div class="score-col">
             <div class="score">1 – 1</div>
-            <div class="fixture-meta">2026-06-12 <span class="badge badge-ft">FT</span></div>
+            <div class="fixture-meta">2026-06-12, 20:00 <span class="badge badge-ft">FT</span></div>
           </div>
           <div class="team away">Bosnia and Herzegovina<font class="member-font"> </font></div>
         </div>
+        <div class="fixture location">Guadalajara, Mexico</div>
+        <div class="fixture-card">
+          <div class="team home"><font class="member-font">(Gill) </font>Korea Republic</div>
+          <div class="score-col">
+            <div class="score">2 – 1</div>
+            <div class="fixture-meta">2026-06-12, 03:00 <span class="badge badge-ft">FT</span></div>
+          </div>
+          <div class="team away">Czechia<font class="member-font"> (Javier)</font></div>
+        </div>
+        <div class="fixture location">Mexico City, Mexico</div>
         <div class="fixture-card">
           <div class="team home"><font class="member-font">(Javier) </font>Mexico <span class="red-card">🟥</span></div>
           <div class="score-col">
             <div class="score">2 – 0</div>
-            <div class="fixture-meta">2026-06-11 <span class="badge badge-ft">FT</span></div>
+            <div class="fixture-meta">2026-06-11, 20:00 <span class="badge badge-ft">FT</span></div>
           </div>
           <div class="team away">South Africa <span class="red-card">🟥🟥</span><font class="member-font"> (Javier)</font></div>
         </div></div>
@@ -290,6 +295,7 @@
 <section id="fixtures">
   <h2>Upcoming fixtures</h2>
   <div class="fixture-date-group"><h3>Saturday, 13 June</h3>
+            <div class="fixture location">New York/New Jersey, United States</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font">(Patrick) </font>Brazil</div>
               <div class="score-col">
@@ -298,6 +304,7 @@
               </div>
               <div class="team away">Morocco<font class="member-font"> (Javier)</font></div>
             </div>
+            <div class="fixture location">San Francisco Bay Area, United States</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font"> </font>Qatar</div>
               <div class="score-col">
@@ -306,6 +313,7 @@
               </div>
               <div class="team away">Switzerland<font class="member-font"> (Indre)</font></div>
             </div></div><div class="fixture-date-group"><h3>Sunday, 14 June</h3>
+            <div class="fixture location">Boston, United States</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font"> </font>Haiti</div>
               <div class="score-col">
@@ -314,6 +322,7 @@
               </div>
               <div class="team away">Scotland<font class="member-font"> (Erin)</font></div>
             </div>
+            <div class="fixture location">Vancouver, Canada</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font">(Erin) </font>Australia</div>
               <div class="score-col">
@@ -322,6 +331,7 @@
               </div>
               <div class="team away">Türkiye<font class="member-font"> (Gill)</font></div>
             </div>
+            <div class="fixture location">Houston, United States</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font">(Patrick) </font>Germany</div>
               <div class="score-col">
@@ -330,6 +340,7 @@
               </div>
               <div class="team away">Curaçao<font class="member-font"> </font></div>
             </div>
+            <div class="fixture location">Dallas, United States</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font">(Gill) </font>Netherlands</div>
               <div class="score-col">
@@ -338,6 +349,7 @@
               </div>
               <div class="team away">Japan<font class="member-font"> (Patrick)</font></div>
             </div></div><div class="fixture-date-group"><h3>Monday, 15 June</h3>
+            <div class="fixture location">Philadelphia, United States</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font">(Patrick) </font>Côte d’Ivoire</div>
               <div class="score-col">
@@ -346,6 +358,7 @@
               </div>
               <div class="team away">Ecuador<font class="member-font"> </font></div>
             </div>
+            <div class="fixture location">Monterrey, Mexico</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font">(Erin) </font>Sweden</div>
               <div class="score-col">
@@ -354,6 +367,7 @@
               </div>
               <div class="team away">Tunisia<font class="member-font"> </font></div>
             </div>
+            <div class="fixture location">Miami, United States</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font"> </font>Saudi Arabia</div>
               <div class="score-col">
@@ -362,6 +376,7 @@
               </div>
               <div class="team away">Uruguay<font class="member-font"> </font></div>
             </div>
+            <div class="fixture location">Atlanta, United States</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font">(Indre) </font>Spain</div>
               <div class="score-col">
@@ -370,6 +385,7 @@
               </div>
               <div class="team away">Cabo Verde<font class="member-font"> </font></div>
             </div>
+            <div class="fixture location">Seattle, United States</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font">(Erin) </font>Belgium</div>
               <div class="score-col">
@@ -378,6 +394,7 @@
               </div>
               <div class="team away">Egypt<font class="member-font"> (Gill)</font></div>
             </div></div><div class="fixture-date-group"><h3>Tuesday, 16 June</h3>
+            <div class="fixture location">Los Angeles, United States</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font"> </font>Iran</div>
               <div class="score-col">
@@ -386,6 +403,7 @@
               </div>
               <div class="team away">New Zealand<font class="member-font"> (Indre)</font></div>
             </div>
+            <div class="fixture location">New York/New Jersey, United States</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font">(Erin) </font>France</div>
               <div class="score-col">
@@ -394,6 +412,7 @@
               </div>
               <div class="team away">Senegal<font class="member-font"> </font></div>
             </div>
+            <div class="fixture location">Boston, United States</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font"> </font>Iraq</div>
               <div class="score-col">
@@ -402,6 +421,7 @@
               </div>
               <div class="team away">Norway<font class="member-font"> (Indre)</font></div>
             </div></div><div class="fixture-date-group"><h3>Wednesday, 17 June</h3>
+            <div class="fixture location">Kansas City, United States</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font">(Indre) </font>Argentina</div>
               <div class="score-col">
@@ -410,6 +430,7 @@
               </div>
               <div class="team away">Algeria<font class="member-font"> </font></div>
             </div>
+            <div class="fixture location">San Francisco Bay Area, United States</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font"> </font>Austria</div>
               <div class="score-col">
@@ -418,6 +439,7 @@
               </div>
               <div class="team away">Jordan<font class="member-font"> </font></div>
             </div>
+            <div class="fixture location">Dallas, United States</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font">(Javier) </font>England</div>
               <div class="score-col">
@@ -426,6 +448,7 @@
               </div>
               <div class="team away">Croatia<font class="member-font"> </font></div>
             </div>
+            <div class="fixture location">Houston, United States</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font">(Gill) </font>Portugal</div>
               <div class="score-col">
@@ -434,6 +457,7 @@
               </div>
               <div class="team away">Congo DR<font class="member-font"> </font></div>
             </div></div><div class="fixture-date-group"><h3>Thursday, 18 June</h3>
+            <div class="fixture location">Toronto, Canada</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font">(Patrick) </font>Ghana</div>
               <div class="score-col">
@@ -442,6 +466,7 @@
               </div>
               <div class="team away">Panama<font class="member-font"> </font></div>
             </div>
+            <div class="fixture location">Mexico City, Mexico</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font"> </font>Uzbekistan</div>
               <div class="score-col">
@@ -450,6 +475,7 @@
               </div>
               <div class="team away">Colombia<font class="member-font"> </font></div>
             </div>
+            <div class="fixture location">Atlanta, United States</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font">(Javier) </font>Czechia</div>
               <div class="score-col">
@@ -458,6 +484,7 @@
               </div>
               <div class="team away">South Africa<font class="member-font"> (Javier)</font></div>
             </div>
+            <div class="fixture location">Los Angeles, United States</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font">(Indre) </font>Switzerland</div>
               <div class="score-col">
@@ -466,6 +493,7 @@
               </div>
               <div class="team away">Bosnia and Herzegovina<font class="member-font"> </font></div>
             </div>
+            <div class="fixture location">Vancouver, Canada</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font"> </font>Canada</div>
               <div class="score-col">
@@ -474,6 +502,7 @@
               </div>
               <div class="team away">Qatar<font class="member-font"> </font></div>
             </div></div><div class="fixture-date-group"><h3>Friday, 19 June</h3>
+            <div class="fixture location">Guadalajara, Mexico</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font">(Javier) </font>Mexico</div>
               <div class="score-col">
@@ -482,6 +511,7 @@
               </div>
               <div class="team away">Korea Republic<font class="member-font"> (Gill)</font></div>
             </div>
+            <div class="fixture location">Boston, United States</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font">(Erin) </font>Scotland</div>
               <div class="score-col">
@@ -490,6 +520,7 @@
               </div>
               <div class="team away">Morocco<font class="member-font"> (Javier)</font></div>
             </div>
+            <div class="fixture location">Seattle, United States</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font"> </font>United States</div>
               <div class="score-col">
@@ -498,6 +529,7 @@
               </div>
               <div class="team away">Australia<font class="member-font"> (Erin)</font></div>
             </div></div><div class="fixture-date-group"><h3>Saturday, 20 June</h3>
+            <div class="fixture location">Philadelphia, United States</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font">(Patrick) </font>Brazil</div>
               <div class="score-col">
@@ -506,6 +538,7 @@
               </div>
               <div class="team away">Haiti<font class="member-font"> </font></div>
             </div>
+            <div class="fixture location">San Francisco Bay Area, United States</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font">(Gill) </font>Türkiye</div>
               <div class="score-col">
@@ -514,6 +547,7 @@
               </div>
               <div class="team away">Paraguay<font class="member-font"> </font></div>
             </div>
+            <div class="fixture location">Toronto, Canada</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font">(Patrick) </font>Germany</div>
               <div class="score-col">
@@ -522,6 +556,7 @@
               </div>
               <div class="team away">Côte d’Ivoire<font class="member-font"> (Patrick)</font></div>
             </div>
+            <div class="fixture location">Houston, United States</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font">(Gill) </font>Netherlands</div>
               <div class="score-col">
@@ -530,6 +565,7 @@
               </div>
               <div class="team away">Sweden<font class="member-font"> (Erin)</font></div>
             </div></div><div class="fixture-date-group"><h3>Sunday, 21 June</h3>
+            <div class="fixture location">Kansas City, United States</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font"> </font>Ecuador</div>
               <div class="score-col">
@@ -538,6 +574,7 @@
               </div>
               <div class="team away">Curaçao<font class="member-font"> </font></div>
             </div>
+            <div class="fixture location">Monterrey, Mexico</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font"> </font>Tunisia</div>
               <div class="score-col">
@@ -546,6 +583,7 @@
               </div>
               <div class="team away">Japan<font class="member-font"> (Patrick)</font></div>
             </div>
+            <div class="fixture location">Miami, United States</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font"> </font>Uruguay</div>
               <div class="score-col">
@@ -554,6 +592,7 @@
               </div>
               <div class="team away">Cabo Verde<font class="member-font"> </font></div>
             </div>
+            <div class="fixture location">Atlanta, United States</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font">(Indre) </font>Spain</div>
               <div class="score-col">
@@ -562,6 +601,7 @@
               </div>
               <div class="team away">Saudi Arabia<font class="member-font"> </font></div>
             </div>
+            <div class="fixture location">Los Angeles, United States</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font">(Erin) </font>Belgium</div>
               <div class="score-col">
@@ -570,6 +610,7 @@
               </div>
               <div class="team away">Iran<font class="member-font"> </font></div>
             </div></div><div class="fixture-date-group"><h3>Monday, 22 June</h3>
+            <div class="fixture location">Vancouver, Canada</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font">(Indre) </font>New Zealand</div>
               <div class="score-col">
@@ -578,6 +619,7 @@
               </div>
               <div class="team away">Egypt<font class="member-font"> (Gill)</font></div>
             </div>
+            <div class="fixture location">Philadelphia, United States</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font">(Erin) </font>France</div>
               <div class="score-col">
@@ -586,6 +628,7 @@
               </div>
               <div class="team away">Iraq<font class="member-font"> </font></div>
             </div>
+            <div class="fixture location">Dallas, United States</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font">(Indre) </font>Argentina</div>
               <div class="score-col">
@@ -594,6 +637,7 @@
               </div>
               <div class="team away">Austria<font class="member-font"> </font></div>
             </div></div><div class="fixture-date-group"><h3>Tuesday, 23 June</h3>
+            <div class="fixture location">New York/New Jersey, United States</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font">(Indre) </font>Norway</div>
               <div class="score-col">
@@ -602,6 +646,7 @@
               </div>
               <div class="team away">Senegal<font class="member-font"> </font></div>
             </div>
+            <div class="fixture location">San Francisco Bay Area, United States</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font"> </font>Jordan</div>
               <div class="score-col">
@@ -610,6 +655,7 @@
               </div>
               <div class="team away">Algeria<font class="member-font"> </font></div>
             </div>
+            <div class="fixture location">Boston, United States</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font">(Javier) </font>England</div>
               <div class="score-col">
@@ -618,6 +664,7 @@
               </div>
               <div class="team away">Ghana<font class="member-font"> (Patrick)</font></div>
             </div>
+            <div class="fixture location">Houston, United States</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font">(Gill) </font>Portugal</div>
               <div class="score-col">
@@ -626,6 +673,7 @@
               </div>
               <div class="team away">Uzbekistan<font class="member-font"> </font></div>
             </div></div><div class="fixture-date-group"><h3>Wednesday, 24 June</h3>
+            <div class="fixture location">Toronto, Canada</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font"> </font>Panama</div>
               <div class="score-col">
@@ -634,6 +682,7 @@
               </div>
               <div class="team away">Croatia<font class="member-font"> </font></div>
             </div>
+            <div class="fixture location">Guadalajara, Mexico</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font"> </font>Colombia</div>
               <div class="score-col">
@@ -642,6 +691,7 @@
               </div>
               <div class="team away">Congo DR<font class="member-font"> </font></div>
             </div>
+            <div class="fixture location">Miami, United States</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font">(Erin) </font>Scotland</div>
               <div class="score-col">
@@ -650,6 +700,7 @@
               </div>
               <div class="team away">Brazil<font class="member-font"> (Patrick)</font></div>
             </div>
+            <div class="fixture location">Atlanta, United States</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font">(Javier) </font>Morocco</div>
               <div class="score-col">
@@ -658,6 +709,7 @@
               </div>
               <div class="team away">Haiti<font class="member-font"> </font></div>
             </div>
+            <div class="fixture location">Vancouver, Canada</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font">(Indre) </font>Switzerland</div>
               <div class="score-col">
@@ -666,6 +718,7 @@
               </div>
               <div class="team away">Canada<font class="member-font"> </font></div>
             </div>
+            <div class="fixture location">Seattle, United States</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font"> </font>Bosnia and Herzegovina</div>
               <div class="score-col">
@@ -674,6 +727,7 @@
               </div>
               <div class="team away">Qatar<font class="member-font"> </font></div>
             </div></div><div class="fixture-date-group"><h3>Thursday, 25 June</h3>
+            <div class="fixture location">Mexico City, Mexico</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font">(Javier) </font>Czechia</div>
               <div class="score-col">
@@ -682,6 +736,7 @@
               </div>
               <div class="team away">Mexico<font class="member-font"> (Javier)</font></div>
             </div>
+            <div class="fixture location">Monterrey, Mexico</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font">(Javier) </font>South Africa</div>
               <div class="score-col">
@@ -690,6 +745,7 @@
               </div>
               <div class="team away">Korea Republic<font class="member-font"> (Gill)</font></div>
             </div>
+            <div class="fixture location">Philadelphia, United States</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font"> </font>Curaçao</div>
               <div class="score-col">
@@ -698,6 +754,7 @@
               </div>
               <div class="team away">Côte d’Ivoire<font class="member-font"> (Patrick)</font></div>
             </div>
+            <div class="fixture location">New York/New Jersey, United States</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font"> </font>Ecuador</div>
               <div class="score-col">
@@ -706,6 +763,7 @@
               </div>
               <div class="team away">Germany<font class="member-font"> (Patrick)</font></div>
             </div></div><div class="fixture-date-group"><h3>Friday, 26 June</h3>
+            <div class="fixture location">Dallas, United States</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font">(Patrick) </font>Japan</div>
               <div class="score-col">
@@ -714,6 +772,7 @@
               </div>
               <div class="team away">Sweden<font class="member-font"> (Erin)</font></div>
             </div>
+            <div class="fixture location">Kansas City, United States</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font"> </font>Tunisia</div>
               <div class="score-col">
@@ -722,6 +781,7 @@
               </div>
               <div class="team away">Netherlands<font class="member-font"> (Gill)</font></div>
             </div>
+            <div class="fixture location">Los Angeles, United States</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font">(Gill) </font>Türkiye</div>
               <div class="score-col">
@@ -730,6 +790,7 @@
               </div>
               <div class="team away">United States<font class="member-font"> </font></div>
             </div>
+            <div class="fixture location">San Francisco Bay Area, United States</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font"> </font>Paraguay</div>
               <div class="score-col">
@@ -738,6 +799,7 @@
               </div>
               <div class="team away">Australia<font class="member-font"> (Erin)</font></div>
             </div>
+            <div class="fixture location">Boston, United States</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font">(Indre) </font>Norway</div>
               <div class="score-col">
@@ -746,6 +808,7 @@
               </div>
               <div class="team away">France<font class="member-font"> (Erin)</font></div>
             </div>
+            <div class="fixture location">Toronto, Canada</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font"> </font>Senegal</div>
               <div class="score-col">
@@ -754,6 +817,7 @@
               </div>
               <div class="team away">Iraq<font class="member-font"> </font></div>
             </div></div><div class="fixture-date-group"><h3>Saturday, 27 June</h3>
+            <div class="fixture location">Seattle, United States</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font">(Gill) </font>Egypt</div>
               <div class="score-col">
@@ -762,6 +826,7 @@
               </div>
               <div class="team away">Iran<font class="member-font"> </font></div>
             </div>
+            <div class="fixture location">Vancouver, Canada</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font">(Indre) </font>New Zealand</div>
               <div class="score-col">
@@ -770,6 +835,7 @@
               </div>
               <div class="team away">Belgium<font class="member-font"> (Erin)</font></div>
             </div>
+            <div class="fixture location">Houston, United States</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font"> </font>Cabo Verde</div>
               <div class="score-col">
@@ -778,6 +844,7 @@
               </div>
               <div class="team away">Saudi Arabia<font class="member-font"> </font></div>
             </div>
+            <div class="fixture location">Guadalajara, Mexico</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font"> </font>Uruguay</div>
               <div class="score-col">
@@ -786,6 +853,7 @@
               </div>
               <div class="team away">Spain<font class="member-font"> (Indre)</font></div>
             </div>
+            <div class="fixture location">New York/New Jersey, United States</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font"> </font>Panama</div>
               <div class="score-col">
@@ -794,6 +862,7 @@
               </div>
               <div class="team away">England<font class="member-font"> (Javier)</font></div>
             </div>
+            <div class="fixture location">Philadelphia, United States</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font"> </font>Croatia</div>
               <div class="score-col">
@@ -802,6 +871,7 @@
               </div>
               <div class="team away">Ghana<font class="member-font"> (Patrick)</font></div>
             </div></div><div class="fixture-date-group"><h3>Sunday, 28 June</h3>
+            <div class="fixture location">Kansas City, United States</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font"> </font>Algeria</div>
               <div class="score-col">
@@ -810,6 +880,7 @@
               </div>
               <div class="team away">Austria<font class="member-font"> </font></div>
             </div>
+            <div class="fixture location">Dallas, United States</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font"> </font>Jordan</div>
               <div class="score-col">
@@ -818,6 +889,7 @@
               </div>
               <div class="team away">Argentina<font class="member-font"> (Indre)</font></div>
             </div>
+            <div class="fixture location">Miami, United States</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font"> </font>Colombia</div>
               <div class="score-col">
@@ -826,6 +898,7 @@
               </div>
               <div class="team away">Portugal<font class="member-font"> (Gill)</font></div>
             </div>
+            <div class="fixture location">Atlanta, United States</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font"> </font>Congo DR</div>
               <div class="score-col">
@@ -834,6 +907,7 @@
               </div>
               <div class="team away">Uzbekistan<font class="member-font"> </font></div>
             </div>
+            <div class="fixture location">Los Angeles, United States</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font"> </font>Group A Runner-up</div>
               <div class="score-col">
@@ -842,6 +916,7 @@
               </div>
               <div class="team away">Group B Runner-up<font class="member-font"> </font></div>
             </div></div><div class="fixture-date-group"><h3>Monday, 29 June</h3>
+            <div class="fixture location">Boston, United States</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font"> </font>Group E Winner</div>
               <div class="score-col">
@@ -850,6 +925,7 @@
               </div>
               <div class="team away">Group A/B/C/D/F 3rd Place<font class="member-font"> </font></div>
             </div>
+            <div class="fixture location">Houston, United States</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font"> </font>Group C Winner</div>
               <div class="score-col">
@@ -858,6 +934,7 @@
               </div>
               <div class="team away">Group F Runner-up<font class="member-font"> </font></div>
             </div></div><div class="fixture-date-group"><h3>Tuesday, 30 June</h3>
+            <div class="fixture location">Monterrey, Mexico</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font"> </font>Group F Winner</div>
               <div class="score-col">
@@ -866,6 +943,7 @@
               </div>
               <div class="team away">Group C Runner-up<font class="member-font"> </font></div>
             </div>
+            <div class="fixture location">New York/New Jersey, United States</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font"> </font>Group I Winner</div>
               <div class="score-col">
@@ -874,6 +952,7 @@
               </div>
               <div class="team away">Group C/D/F/G/H 3rd Place<font class="member-font"> </font></div>
             </div>
+            <div class="fixture location">Dallas, United States</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font"> </font>Group E Runner-up</div>
               <div class="score-col">
@@ -882,6 +961,7 @@
               </div>
               <div class="team away">Group I Runner-up<font class="member-font"> </font></div>
             </div></div><div class="fixture-date-group"><h3>Wednesday, 1 July</h3>
+            <div class="fixture location">Mexico City, Mexico</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font"> </font>Group A Winner</div>
               <div class="score-col">
@@ -890,6 +970,7 @@
               </div>
               <div class="team away">Group C/E/F/H/I 3rd Place<font class="member-font"> </font></div>
             </div>
+            <div class="fixture location">Atlanta, United States</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font"> </font>Group L Winner</div>
               <div class="score-col">
@@ -898,6 +979,7 @@
               </div>
               <div class="team away">Group E/H/I/J/K 3rd Place<font class="member-font"> </font></div>
             </div>
+            <div class="fixture location">Seattle, United States</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font"> </font>Group G Winner</div>
               <div class="score-col">
@@ -906,6 +988,7 @@
               </div>
               <div class="team away">Group A/E/H/I/J 3rd Place<font class="member-font"> </font></div>
             </div></div><div class="fixture-date-group"><h3>Thursday, 2 July</h3>
+            <div class="fixture location">San Francisco Bay Area, United States</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font"> </font>Group D Winner</div>
               <div class="score-col">
@@ -914,6 +997,7 @@
               </div>
               <div class="team away">Group B/E/F/I/J 3rd Place<font class="member-font"> </font></div>
             </div>
+            <div class="fixture location">Los Angeles, United States</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font"> </font>Group H Winner</div>
               <div class="score-col">
@@ -922,6 +1006,7 @@
               </div>
               <div class="team away">Group J Runner-up<font class="member-font"> </font></div>
             </div></div><div class="fixture-date-group"><h3>Friday, 3 July</h3>
+            <div class="fixture location">Toronto, Canada</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font"> </font>Group K Runner-up</div>
               <div class="score-col">
@@ -930,6 +1015,7 @@
               </div>
               <div class="team away">Group L Runner-up<font class="member-font"> </font></div>
             </div>
+            <div class="fixture location">Vancouver, Canada</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font"> </font>Group B Winner</div>
               <div class="score-col">
@@ -938,6 +1024,7 @@
               </div>
               <div class="team away">Group E/F/G/I/J 3rd Place<font class="member-font"> </font></div>
             </div>
+            <div class="fixture location">Miami, United States</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font"> </font>Group J Winner</div>
               <div class="score-col">
@@ -946,6 +1033,7 @@
               </div>
               <div class="team away">Group H Runner-up<font class="member-font"> </font></div>
             </div>
+            <div class="fixture location">Dallas, United States</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font"> </font>Group D Runner-up</div>
               <div class="score-col">
@@ -954,6 +1042,7 @@
               </div>
               <div class="team away">Group G Runner-up<font class="member-font"> </font></div>
             </div></div><div class="fixture-date-group"><h3>Saturday, 4 July</h3>
+            <div class="fixture location">Kansas City, United States</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font"> </font>Group K Winner</div>
               <div class="score-col">
@@ -962,6 +1051,7 @@
               </div>
               <div class="team away">Group D/E/I/J/L 3rd Place<font class="member-font"> </font></div>
             </div>
+            <div class="fixture location">Philadelphia, United States</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font"> </font>Match 74 Winner</div>
               <div class="score-col">
@@ -970,6 +1060,7 @@
               </div>
               <div class="team away">Match 77 Winner<font class="member-font"> </font></div>
             </div>
+            <div class="fixture location">Houston, United States</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font"> </font>Match 73 Winner</div>
               <div class="score-col">
@@ -978,6 +1069,7 @@
               </div>
               <div class="team away">Match 75 Winner<font class="member-font"> </font></div>
             </div></div><div class="fixture-date-group"><h3>Sunday, 5 July</h3>
+            <div class="fixture location">New York/New Jersey, United States</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font"> </font>Match 76 Winner</div>
               <div class="score-col">
@@ -986,6 +1078,7 @@
               </div>
               <div class="team away">Match 78 Winner<font class="member-font"> </font></div>
             </div></div><div class="fixture-date-group"><h3>Monday, 6 July</h3>
+            <div class="fixture location">Mexico City, Mexico</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font"> </font>Match 79 Winner</div>
               <div class="score-col">
@@ -994,6 +1087,7 @@
               </div>
               <div class="team away">Match 80 Winner<font class="member-font"> </font></div>
             </div>
+            <div class="fixture location">Dallas, United States</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font"> </font>Match 83 Winner</div>
               <div class="score-col">
@@ -1002,6 +1096,7 @@
               </div>
               <div class="team away">Match 84 Winner<font class="member-font"> </font></div>
             </div></div><div class="fixture-date-group"><h3>Tuesday, 7 July</h3>
+            <div class="fixture location">Seattle, United States</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font"> </font>Match 81 Winner</div>
               <div class="score-col">
@@ -1010,6 +1105,7 @@
               </div>
               <div class="team away">Match 82 Winner<font class="member-font"> </font></div>
             </div>
+            <div class="fixture location">Atlanta, United States</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font"> </font>Match 86 Winner</div>
               <div class="score-col">
@@ -1018,6 +1114,7 @@
               </div>
               <div class="team away">Match 88 Winner<font class="member-font"> </font></div>
             </div>
+            <div class="fixture location">Vancouver, Canada</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font"> </font>Match 85 Winner</div>
               <div class="score-col">
@@ -1026,6 +1123,7 @@
               </div>
               <div class="team away">Match 87 Winner<font class="member-font"> </font></div>
             </div></div><div class="fixture-date-group"><h3>Thursday, 9 July</h3>
+            <div class="fixture location">Boston, United States</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font"> </font>Match 89 Winner</div>
               <div class="score-col">
@@ -1034,6 +1132,7 @@
               </div>
               <div class="team away">Match 90 Winner<font class="member-font"> </font></div>
             </div></div><div class="fixture-date-group"><h3>Friday, 10 July</h3>
+            <div class="fixture location">Los Angeles, United States</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font"> </font>Match 93 Winner</div>
               <div class="score-col">
@@ -1042,6 +1141,7 @@
               </div>
               <div class="team away">Match 94 Winner<font class="member-font"> </font></div>
             </div></div><div class="fixture-date-group"><h3>Saturday, 11 July</h3>
+            <div class="fixture location">Miami, United States</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font"> </font>Match 91 Winner</div>
               <div class="score-col">
@@ -1050,6 +1150,7 @@
               </div>
               <div class="team away">Match 92 Winner<font class="member-font"> </font></div>
             </div></div><div class="fixture-date-group"><h3>Sunday, 12 July</h3>
+            <div class="fixture location">Kansas City, United States</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font"> </font>Match 95 Winner</div>
               <div class="score-col">
@@ -1058,6 +1159,7 @@
               </div>
               <div class="team away">Match 96 Winner<font class="member-font"> </font></div>
             </div></div><div class="fixture-date-group"><h3>Tuesday, 14 July</h3>
+            <div class="fixture location">Dallas, United States</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font"> </font>Match 97 Winner</div>
               <div class="score-col">
@@ -1066,6 +1168,7 @@
               </div>
               <div class="team away">Match 98 Winner<font class="member-font"> </font></div>
             </div></div><div class="fixture-date-group"><h3>Wednesday, 15 July</h3>
+            <div class="fixture location">Atlanta, United States</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font"> </font>Match 99 Winner</div>
               <div class="score-col">
@@ -1074,6 +1177,7 @@
               </div>
               <div class="team away">Match 100 Winner<font class="member-font"> </font></div>
             </div></div><div class="fixture-date-group"><h3>Saturday, 18 July</h3>
+            <div class="fixture location">Miami, United States</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font"> </font>Match 101 Loser</div>
               <div class="score-col">
@@ -1082,6 +1186,7 @@
               </div>
               <div class="team away">Match 102 Loser<font class="member-font"> </font></div>
             </div></div><div class="fixture-date-group"><h3>Sunday, 19 July</h3>
+            <div class="fixture location">New York/New Jersey, United States</div>
             <div class="fixture-card">
               <div class="team home"><font class="member-font"> </font>Match 101 Winner</div>
               <div class="score-col">
@@ -1106,10 +1211,10 @@
               <td>3</td><td>Mexico</td><td>1</td><td>1</td>
               <td>0</td><td>0</td><td>2</td><td>0</td>
               <td>+2</td><td class="pts-col">4</td></tr><tr class="">
-              <td>4</td><td>Canada</td><td>1</td><td>0</td>
+              <td>4</td><td>Bosnia and Herzegovina</td><td>1</td><td>0</td>
               <td>1</td><td>0</td><td>1</td><td>1</td>
               <td>+0</td><td class="pts-col">2</td></tr><tr class="">
-              <td>5</td><td>Bosnia and Herzegovina</td><td>1</td><td>0</td>
+              <td>5</td><td>Canada</td><td>1</td><td>0</td>
               <td>1</td><td>0</td><td>1</td><td>1</td>
               <td>+0</td><td class="pts-col">2</td></tr><tr class="">
               <td>6</td><td>Czechia</td><td>1</td><td>0</td>
@@ -1118,124 +1223,124 @@
               <td>7</td><td>Paraguay</td><td>1</td><td>0</td>
               <td>0</td><td>1</td><td>1</td><td>4</td>
               <td>-3</td><td class="pts-col">1</td></tr><tr class="">
-              <td>8</td><td>Uruguay</td><td>0</td><td>0</td>
+              <td>8</td><td>New Zealand</td><td>0</td><td>0</td>
               <td>0</td><td>0</td><td>0</td><td>0</td>
               <td>+0</td><td class="pts-col">0</td></tr><tr class="">
-              <td>9</td><td>Brazil</td><td>0</td><td>0</td>
+              <td>9</td><td>Senegal</td><td>0</td><td>0</td>
               <td>0</td><td>0</td><td>0</td><td>0</td>
               <td>+0</td><td class="pts-col">0</td></tr><tr class="">
-              <td>10</td><td>Tunisia</td><td>0</td><td>0</td>
+              <td>10</td><td>Ghana</td><td>0</td><td>0</td>
               <td>0</td><td>0</td><td>0</td><td>0</td>
               <td>+0</td><td class="pts-col">0</td></tr><tr class="">
-              <td>11</td><td>France</td><td>0</td><td>0</td>
+              <td>11</td><td>Uruguay</td><td>0</td><td>0</td>
               <td>0</td><td>0</td><td>0</td><td>0</td>
               <td>+0</td><td class="pts-col">0</td></tr><tr class="">
-              <td>12</td><td>Côte d’Ivoire</td><td>0</td><td>0</td>
+              <td>12</td><td>Argentina</td><td>0</td><td>0</td>
               <td>0</td><td>0</td><td>0</td><td>0</td>
               <td>+0</td><td class="pts-col">0</td></tr><tr class="">
-              <td>13</td><td>Jordan</td><td>0</td><td>0</td>
+              <td>13</td><td>Panama</td><td>0</td><td>0</td>
               <td>0</td><td>0</td><td>0</td><td>0</td>
               <td>+0</td><td class="pts-col">0</td></tr><tr class="">
-              <td>14</td><td>Scotland</td><td>0</td><td>0</td>
+              <td>14</td><td>Australia</td><td>0</td><td>0</td>
               <td>0</td><td>0</td><td>0</td><td>0</td>
               <td>+0</td><td class="pts-col">0</td></tr><tr class="">
-              <td>15</td><td>Norway</td><td>0</td><td>0</td>
+              <td>15</td><td>Egypt</td><td>0</td><td>0</td>
               <td>0</td><td>0</td><td>0</td><td>0</td>
               <td>+0</td><td class="pts-col">0</td></tr><tr class="">
-              <td>16</td><td>Iran</td><td>0</td><td>0</td>
+              <td>16</td><td>Qatar</td><td>0</td><td>0</td>
               <td>0</td><td>0</td><td>0</td><td>0</td>
               <td>+0</td><td class="pts-col">0</td></tr><tr class="">
-              <td>17</td><td>Senegal</td><td>0</td><td>0</td>
+              <td>17</td><td>Iran</td><td>0</td><td>0</td>
               <td>0</td><td>0</td><td>0</td><td>0</td>
               <td>+0</td><td class="pts-col">0</td></tr><tr class="">
-              <td>18</td><td>Cabo Verde</td><td>0</td><td>0</td>
+              <td>18</td><td>Haiti</td><td>0</td><td>0</td>
               <td>0</td><td>0</td><td>0</td><td>0</td>
               <td>+0</td><td class="pts-col">0</td></tr><tr class="">
-              <td>19</td><td>Belgium</td><td>0</td><td>0</td>
+              <td>19</td><td>Spain</td><td>0</td><td>0</td>
               <td>0</td><td>0</td><td>0</td><td>0</td>
               <td>+0</td><td class="pts-col">0</td></tr><tr class="">
-              <td>20</td><td>Austria</td><td>0</td><td>0</td>
+              <td>20</td><td>Saudi Arabia</td><td>0</td><td>0</td>
               <td>0</td><td>0</td><td>0</td><td>0</td>
               <td>+0</td><td class="pts-col">0</td></tr><tr class="">
-              <td>21</td><td>Portugal</td><td>0</td><td>0</td>
+              <td>21</td><td>Switzerland</td><td>0</td><td>0</td>
               <td>0</td><td>0</td><td>0</td><td>0</td>
               <td>+0</td><td class="pts-col">0</td></tr><tr class="">
-              <td>22</td><td>Iraq</td><td>0</td><td>0</td>
+              <td>22</td><td>Algeria</td><td>0</td><td>0</td>
               <td>0</td><td>0</td><td>0</td><td>0</td>
               <td>+0</td><td class="pts-col">0</td></tr><tr class="">
-              <td>23</td><td>Argentina</td><td>0</td><td>0</td>
+              <td>23</td><td>Türkiye</td><td>0</td><td>0</td>
               <td>0</td><td>0</td><td>0</td><td>0</td>
               <td>+0</td><td class="pts-col">0</td></tr><tr class="">
-              <td>24</td><td>Algeria</td><td>0</td><td>0</td>
+              <td>24</td><td>Portugal</td><td>0</td><td>0</td>
               <td>0</td><td>0</td><td>0</td><td>0</td>
               <td>+0</td><td class="pts-col">0</td></tr><tr class="">
-              <td>25</td><td>Netherlands</td><td>0</td><td>0</td>
+              <td>25</td><td>Uzbekistan</td><td>0</td><td>0</td>
               <td>0</td><td>0</td><td>0</td><td>0</td>
               <td>+0</td><td class="pts-col">0</td></tr><tr class="">
-              <td>26</td><td>Colombia</td><td>0</td><td>0</td>
+              <td>26</td><td>Brazil</td><td>0</td><td>0</td>
               <td>0</td><td>0</td><td>0</td><td>0</td>
               <td>+0</td><td class="pts-col">0</td></tr><tr class="">
-              <td>27</td><td>Spain</td><td>0</td><td>0</td>
+              <td>27</td><td>Iraq</td><td>0</td><td>0</td>
               <td>0</td><td>0</td><td>0</td><td>0</td>
               <td>+0</td><td class="pts-col">0</td></tr><tr class="">
-              <td>28</td><td>England</td><td>0</td><td>0</td>
+              <td>28</td><td>Netherlands</td><td>0</td><td>0</td>
               <td>0</td><td>0</td><td>0</td><td>0</td>
               <td>+0</td><td class="pts-col">0</td></tr><tr class="">
-              <td>29</td><td>Egypt</td><td>0</td><td>0</td>
+              <td>29</td><td>Ecuador</td><td>0</td><td>0</td>
               <td>0</td><td>0</td><td>0</td><td>0</td>
               <td>+0</td><td class="pts-col">0</td></tr><tr class="">
-              <td>30</td><td>Curaçao</td><td>0</td><td>0</td>
+              <td>30</td><td>Côte d’Ivoire</td><td>0</td><td>0</td>
               <td>0</td><td>0</td><td>0</td><td>0</td>
               <td>+0</td><td class="pts-col">0</td></tr><tr class="">
-              <td>31</td><td>Switzerland</td><td>0</td><td>0</td>
+              <td>31</td><td>France</td><td>0</td><td>0</td>
               <td>0</td><td>0</td><td>0</td><td>0</td>
               <td>+0</td><td class="pts-col">0</td></tr><tr class="">
-              <td>32</td><td>New Zealand</td><td>0</td><td>0</td>
+              <td>32</td><td>Tunisia</td><td>0</td><td>0</td>
               <td>0</td><td>0</td><td>0</td><td>0</td>
               <td>+0</td><td class="pts-col">0</td></tr><tr class="">
-              <td>33</td><td>Germany</td><td>0</td><td>0</td>
+              <td>33</td><td>Jordan</td><td>0</td><td>0</td>
               <td>0</td><td>0</td><td>0</td><td>0</td>
               <td>+0</td><td class="pts-col">0</td></tr><tr class="">
-              <td>34</td><td>Uzbekistan</td><td>0</td><td>0</td>
+              <td>34</td><td>England</td><td>0</td><td>0</td>
               <td>0</td><td>0</td><td>0</td><td>0</td>
               <td>+0</td><td class="pts-col">0</td></tr><tr class="">
-              <td>35</td><td>Australia</td><td>0</td><td>0</td>
+              <td>35</td><td>Curaçao</td><td>0</td><td>0</td>
               <td>0</td><td>0</td><td>0</td><td>0</td>
               <td>+0</td><td class="pts-col">0</td></tr><tr class="">
-              <td>36</td><td>Morocco</td><td>0</td><td>0</td>
+              <td>36</td><td>Austria</td><td>0</td><td>0</td>
               <td>0</td><td>0</td><td>0</td><td>0</td>
               <td>+0</td><td class="pts-col">0</td></tr><tr class="">
-              <td>37</td><td>Ecuador</td><td>0</td><td>0</td>
+              <td>37</td><td>Colombia</td><td>0</td><td>0</td>
               <td>0</td><td>0</td><td>0</td><td>0</td>
               <td>+0</td><td class="pts-col">0</td></tr><tr class="">
-              <td>38</td><td>Saudi Arabia</td><td>0</td><td>0</td>
+              <td>38</td><td>Norway</td><td>0</td><td>0</td>
               <td>0</td><td>0</td><td>0</td><td>0</td>
               <td>+0</td><td class="pts-col">0</td></tr><tr class="">
-              <td>39</td><td>Haiti</td><td>0</td><td>0</td>
+              <td>39</td><td>Sweden</td><td>0</td><td>0</td>
               <td>0</td><td>0</td><td>0</td><td>0</td>
               <td>+0</td><td class="pts-col">0</td></tr><tr class="">
-              <td>40</td><td>Ghana</td><td>0</td><td>0</td>
+              <td>40</td><td>Cabo Verde</td><td>0</td><td>0</td>
               <td>0</td><td>0</td><td>0</td><td>0</td>
               <td>+0</td><td class="pts-col">0</td></tr><tr class="">
-              <td>41</td><td>Panama</td><td>0</td><td>0</td>
+              <td>41</td><td>Croatia</td><td>0</td><td>0</td>
               <td>0</td><td>0</td><td>0</td><td>0</td>
               <td>+0</td><td class="pts-col">0</td></tr><tr class="">
-              <td>42</td><td>Congo DR</td><td>0</td><td>0</td>
+              <td>42</td><td>Japan</td><td>0</td><td>0</td>
               <td>0</td><td>0</td><td>0</td><td>0</td>
               <td>+0</td><td class="pts-col">0</td></tr><tr class="">
-              <td>43</td><td>Croatia</td><td>0</td><td>0</td>
+              <td>43</td><td>Belgium</td><td>0</td><td>0</td>
               <td>0</td><td>0</td><td>0</td><td>0</td>
               <td>+0</td><td class="pts-col">0</td></tr><tr class="">
-              <td>44</td><td>Qatar</td><td>0</td><td>0</td>
+              <td>44</td><td>Morocco</td><td>0</td><td>0</td>
               <td>0</td><td>0</td><td>0</td><td>0</td>
               <td>+0</td><td class="pts-col">0</td></tr><tr class="">
-              <td>45</td><td>Sweden</td><td>0</td><td>0</td>
+              <td>45</td><td>Scotland</td><td>0</td><td>0</td>
               <td>0</td><td>0</td><td>0</td><td>0</td>
               <td>+0</td><td class="pts-col">0</td></tr><tr class="">
-              <td>46</td><td>Türkiye</td><td>0</td><td>0</td>
+              <td>46</td><td>Germany</td><td>0</td><td>0</td>
               <td>0</td><td>0</td><td>0</td><td>0</td>
               <td>+0</td><td class="pts-col">0</td></tr><tr class="">
-              <td>47</td><td>Japan</td><td>0</td><td>0</td>
+              <td>47</td><td>Congo DR</td><td>0</td><td>0</td>
               <td>0</td><td>0</td><td>0</td><td>0</td>
               <td>+0</td><td class="pts-col">0</td></tr><tr class="">
               <td>48</td><td>South Africa</td><td>1</td><td>0</td>
