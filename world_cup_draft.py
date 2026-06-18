@@ -16,11 +16,11 @@ import json
 # 1. YOUR GROUP — edit names and teams
 # ─────────────────────────────────────────────────────────────────────────────
 GROUP_MEMBERS = {
-    "Patrick": ["Brazil", "Germany", "Japan", "Côte d’Ivoire", "Ghana"],
-    "Indre":   ["Spain", "Argentina", "Switzerland", "Norway", "New Zealand"],
-    "Erin": ["France", "Belgium", "Australia", "Scotland", "Sweden"],
-    "Javier":  ["England", "Mexico", "Morocco", "South Africa", "Czechia"],
-    "Gillian":  ["Portugal", "Netherlands", "Korea Republic", "Egypt", "Türkiye"],
+    "Patrick": ["Brazil", "Germany", "Japan", "Côte d’Ivoire", "Ghana", "Colombia"],
+    "Indre":   ["Spain", "Argentina", "Switzerland", "Norway", "New Zealand", "Colombia"],
+    "Erin": ["France", "Belgium", "Australia", "Scotland", "Sweden", "Colombia"],
+    "Javier":  ["England", "Mexico", "Morocco", "South Africa", "Czechia", "Colombia"],
+    "Gillian":  ["Portugal", "Netherlands", "Korea Republic", "Egypt", "Türkiye", "Colombia"],
 }
 
 MEMBER_LOOKUP = {
