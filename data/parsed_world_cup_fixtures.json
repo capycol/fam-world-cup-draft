@@ -224,28 +224,44 @@
         "home": "Ghana",
         "away": "Panama",
         "time": "00:00",
-        "location": "Toronto, Canada"
+        "location": "Toronto, Canada",
+        "home_goals":1,
+        "away_goals":0,
+        "home_red_cards":0,
+        "away_red_cards":0
     },
     {
         "date": "2026-06-17",
         "home": "England",
         "away": "Croatia",
         "time": "21:00",
-        "location": "Dallas, United States"
+        "location": "Dallas, United States",
+        "home_goals":4,
+        "away_goals":2,
+        "home_red_cards":0,
+        "away_red_cards":0
     },
     {
         "date": "2026-06-17",
         "home": "Portugal",
         "away": "Congo DR",
         "time": "18:00",
-        "location": "Houston, United States"
+        "location": "Houston, United States",
+        "home_goals":1,
+        "away_goals":1,
+        "home_red_cards":0,
+        "away_red_cards":0
     },
     {
         "date": "2026-06-18",
         "home": "Uzbekistan",
         "away": "Colombia",
         "time": "03:00",
-        "location": "Mexico City, Mexico"
+        "location": "Mexico City, Mexico",
+        "home_goals":1,
+        "away_goals":3,
+        "home_red_cards":0,
+        "away_red_cards":0
     },
     {
         "date": "2026-06-18",
