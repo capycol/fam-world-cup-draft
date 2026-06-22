@@ -356,56 +356,88 @@
         "home": "Germany",
         "away": "Côte d’Ivoire",
         "time": "21:00",
-        "location": "Toronto, Canada"
+        "location": "Toronto, Canada",
+        "home_goals":2,
+        "away_goals":1,
+        "home_red_cards":0,
+        "away_red_cards":0
     },
     {
         "date": "2026-06-21",
         "home": "Ecuador",
         "away": "Curaçao",
         "time": "01:00",
-        "location": "Kansas City, United States"
+        "location": "Kansas City, United States",
+        "home_goals":0,
+        "away_goals":0,
+        "home_red_cards":0,
+        "away_red_cards":0
     },
     {
         "date": "2026-06-20",
         "home": "Netherlands",
         "away": "Sweden",
         "time": "18:00",
-        "location": "Houston, United States"
+        "location": "Houston, United States",
+        "home_goals":5,
+        "away_goals":1,
+        "home_red_cards":0,
+        "away_red_cards":0
     },
     {
         "date": "2026-06-21",
         "home": "Tunisia",
         "away": "Japan",
         "time": "05:00",
-        "location": "Monterrey, Mexico"
+        "location": "Monterrey, Mexico",
+        "home_goals":0,
+        "away_goals":4,
+        "home_red_cards":0,
+        "away_red_cards":0
     },
     {
         "date": "2026-06-21",
         "home": "Uruguay",
         "away": "Cabo Verde",
         "time": "23:00",
-        "location": "Miami, United States"
+        "location": "Miami, United States",
+        "home_goals":2,
+        "away_goals":2,
+        "home_red_cards":0,
+        "away_red_cards":0
     },
     {
         "date": "2026-06-21",
         "home": "Spain",
         "away": "Saudi Arabia",
         "time": "17:00",
-        "location": "Atlanta, United States"
+        "location": "Atlanta, United States",
+        "home_goals":4,
+        "away_goals":0,
+        "home_red_cards":0,
+        "away_red_cards":0
     },
     {
         "date": "2026-06-21",
         "home": "Belgium",
         "away": "Iran",
         "time": "20:00",
-        "location": "Los Angeles, United States"
+        "location": "Los Angeles, United States",
+        "home_goals":0,
+        "away_goals":0,
+        "home_red_cards":1,
+        "away_red_cards":0
     },
     {
         "date": "2026-06-22",
         "home": "New Zealand",
         "away": "Egypt",
         "time": "02:00",
-        "location": "Vancouver, Canada"
+        "location": "Vancouver, Canada",
+        "home_goals":1,
+        "away_goals":3,
+        "home_red_cards":0,
+        "away_red_cards":0
     },
     {
         "date": "2026-06-23",
