@@ -444,28 +444,44 @@
         "home": "Norway",
         "away": "Senegal",
         "time": "01:00",
-        "location": "New York/New Jersey, United States"
+        "location": "New York/New Jersey, United States",
+        "home_goals":3,
+        "away_goals":2,
+        "home_red_cards":0,
+        "away_red_cards":0
     },
     {
         "date": "2026-06-22",
         "home": "France",
         "away": "Iraq",
         "time": "22:00",
-        "location": "Philadelphia, United States"
+        "location": "Philadelphia, United States",
+        "home_goals":3,
+        "away_goals":0,
+        "home_red_cards":0,
+        "away_red_cards":0
     },
     {
         "date": "2026-06-22",
         "home": "Argentina",
         "away": "Austria",
         "time": "18:00",
-        "location": "Dallas, United States"
+        "location": "Dallas, United States",
+        "home_goals":2,
+        "away_goals":0,
+        "home_red_cards":0,
+        "away_red_cards":0
     },
     {
         "date": "2026-06-23",
         "home": "Jordan",
         "away": "Algeria",
         "time": "04:00",
-        "location": "San Francisco Bay Area, United States"
+        "location": "San Francisco Bay Area, United States",
+        "home_goals":1,
+        "away_goals":2,
+        "home_red_cards":0,
+        "away_red_cards":0
     },
     {
         "date": "2026-06-23",
