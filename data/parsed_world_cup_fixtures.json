@@ -664,14 +664,22 @@
         "home": "Norway",
         "away": "France",
         "time": "20:00",
-        "location": "Boston, United States"
+        "location": "Boston, United States",
+        "home_goals":1,
+        "away_goals":4,
+        "home_red_cards":0,
+        "away_red_cards":0
     },
     {
         "date": "2026-06-26",
         "home": "Senegal",
         "away": "Iraq",
         "time": "20:00",
-        "location": "Toronto, Canada"
+        "location": "Toronto, Canada",
+        "home_goals":5,
+        "away_goals":0,
+        "home_red_cards":0,
+        "away_red_cards":1
     },
     {
         "date": "2026-06-27",
