@@ -598,42 +598,66 @@
         "home": "Curaçao",
         "away": "Côte d’Ivoire",
         "time": "21:00",
-        "location": "Philadelphia, United States"
+        "location": "Philadelphia, United States",
+        "home_goals":0,
+        "away_goals":2,
+        "home_red_cards":0,
+        "away_red_cards":0
     },
     {
         "date": "2026-06-25",
         "home": "Ecuador",
         "away": "Germany",
         "time": "21:00",
-        "location": "New York/New Jersey, United States"
+        "location": "New York/New Jersey, United States",
+        "home_goals":2,
+        "away_goals":1,
+        "home_red_cards":0,
+        "away_red_cards":0
     },
     {
         "date": "2026-06-26",
         "home": "Japan",
         "away": "Sweden",
         "time": "00:00",
-        "location": "Dallas, United States"
+        "location": "Dallas, United States",
+        "home_goals":1,
+        "away_goals":1,
+        "home_red_cards":0,
+        "away_red_cards":0
     },
     {
         "date": "2026-06-26",
         "home": "Tunisia",
         "away": "Netherlands",
         "time": "00:00",
-        "location": "Kansas City, United States"
+        "location": "Kansas City, United States",
+        "home_goals":1,
+        "away_goals":3,
+        "home_red_cards":0,
+        "away_red_cards":0
     },
     {
         "date": "2026-06-26",
         "home": "Türkiye",
         "away": "United States",
         "time": "03:00",
-        "location": "Los Angeles, United States"
+        "location": "Los Angeles, United States",
+        "home_goals":3,
+        "away_goals":2,
+        "home_red_cards":0,
+        "away_red_cards":0
     },
     {
         "date": "2026-06-26",
         "home": "Paraguay",
         "away": "Australia",
         "time": "03:00",
-        "location": "San Francisco Bay Area, United States"
+        "location": "San Francisco Bay Area, United States",
+        "home_goals":0,
+        "away_goals":0,
+        "home_red_cards":0,
+        "away_red_cards":0
     },
     {
         "date": "2026-06-26",
