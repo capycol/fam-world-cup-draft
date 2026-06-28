@@ -123,7 +123,8 @@ ELIMINATED = [
     "Scotland",
     "Uzbekistan",
     "Korea Republic",
-    "Iran"
+    "Iran",
+    "South Africa"
 ]
 # ─────────────────────────────────────────────────────────────────────────────
 # 2. SCORING RULES
