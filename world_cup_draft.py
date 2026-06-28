@@ -101,6 +101,26 @@ COUNTRIES = [
     "Saudi Arabia",
     "Panama"
 ]
+
+ELIMINATED = [
+    "Panama",
+    "Haiti",
+    "Tunisia",
+    "Türkiye",
+    "Jordan",
+    "Qatar",
+    "Czechia",
+    "Curaçao",
+    "Iraq",
+    "Uruguay",
+    "Saudi Arabia",
+    "New Zealand",
+    "Scotland",
+    "Uzbekistan",
+    "Korea Republic",
+    "Iran"
+
+]
 # ─────────────────────────────────────────────────────────────────────────────
 # 2. SCORING RULES
 # ─────────────────────────────────────────────────────────────────────────────
@@ -237,6 +257,13 @@ def pts_cls(p):
     return "pts-pos" if p > 0 else ("pts-neg" if p < 0 else "pts-zero")
 
 
+def strikethrough_team(team: str)->str:
+    res = ""
+    for c in team:
+        res = res + c + '\u0336'
+    return res
+
+
 def build_leaderboard_html(member_scores):
     ranked = sorted(member_scores.items(), key=lambda x: -x[1]["total"])
     html = ""
@@ -249,7 +276,11 @@ def build_leaderboard_html(member_scores):
             for b in sorted(data["breakdown"], key=lambda x: x["date"], reverse=True)
         )
         empty_row = '<tr><td colspan="4" class="empty-row">No scored matches yet</td></tr>'
-        teams_str = " · ".join(data["teams"])
+        teams_list = data["teams"]
+        for team_ind, team in enumerate(teams_list):
+            if team in ELIMINATED:
+                teams_list[team_ind] = strikethrough_team(team)
+        teams_str = " · ".join(teams_list)
         html += f"""
         <div class="lb-card {rank_cls}" onclick="toggleBreakdown(this)">
           <div class="lb-rank">{i}</div>
