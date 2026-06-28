@@ -7,7 +7,7 @@ Usage:
     → generates index.html
 """
 
-from datetime import datetime, timezone, time
+from datetime import datetime, timezone, date
 from collections import defaultdict
 from data.data_processor import PARSED_WC_FIXTURES_PATH
 import json
@@ -16,39 +16,44 @@ import json
 # 1. YOUR GROUP — edit names and teams
 # ─────────────────────────────────────────────────────────────────────────────
 GROUP_MEMBERS = {
-    "Patrick": ["Brazil", "Germany", "Japan", "Côte d’Ivoire", "Ghana", "Colombia"],
-    "Indre":   ["Spain", "Argentina", "Switzerland", "Norway", "New Zealand", "Colombia"],
-    "Erin": ["France", "Belgium", "Australia", "Scotland", "Sweden", "Colombia"],
-    "Javier":  ["England", "Mexico", "Morocco", "South Africa", "Czechia", "Colombia"],
-    "Gillian":  ["Portugal", "Netherlands", "Korea Republic", "Egypt", "Türkiye", "Colombia"],
+    "Patrick": ["Colombia", "Brazil", "Germany", "Japan", "Côte d’Ivoire", "Ghana"],
+    "Indre":   ["Colombia", "Spain", "Argentina", "Switzerland", "Norway", "New Zealand", "Ecuador"],
+    "Erin": ["Colombia", "France", "Belgium", "Australia", "Scotland", "Sweden", "Cabo Verde"],
+    "Javier":  ["Colombia", "England", "Mexico", "Morocco", "South Africa", "Czechia", "Croatia"],
+    "Gillian":  ["Colombia", "Portugal", "Netherlands", "Korea Republic", "Egypt", "Türkiye", "Congo DR", "Senegal"],
 }
 
 MEMBER_LOOKUP = {
-    'Brazil': 'Patrick',
-    'Germany': 'Patrick',
-    'Japan': 'Patrick',
-    'Côte d’Ivoire': 'Patrick',
-    'Ghana': 'Patrick',
-    'Spain': 'Indre',
-    'Argentina': 'Indre',
-    'Switzerland': 'Indre',
-    'Norway': 'Indre',
-    'New Zealand': 'Indre',
-    'France': 'Erin',
-    'Belgium': 'Erin',
-    'Australia': 'Erin',
-    'Scotland': 'Erin',
-    'Sweden': 'Erin',
-    'England': 'Javier',
-    'Mexico': 'Javier',
-    'Morocco': 'Javier',
-    'South Africa': 'Javier',
-    'Czechia': 'Javier',
-    'Portugal': 'Gill',
-    'Netherlands': 'Gill',
-    'Korea Republic': 'Gill',
-    'Egypt': 'Gill',
-    'Türkiye': 'Gill'
+    'Brazil': ['Patrick',0],
+    'Germany': ['Patrick',0],
+    'Japan': ['Patrick',0],
+    'Côte d’Ivoire': ['Patrick',0],
+    'Ghana': ['Patrick',0],
+    'Spain': ['Indre',0],
+    'Argentina': ['Indre',0],
+    'Switzerland': ['Indre',0],
+    'Norway': ['Indre',0],
+    'New Zealand': ['Indre',0],
+    'Ecuador': ['Indre',1],
+    'France': ['Erin',0],
+    'Belgium': ['Erin',0],
+    'Australia': ['Erin',0],
+    'Scotland': ['Erin',0],
+    'Sweden': ['Erin',0],
+    'Cabo Verde': ['Erin',1],
+    'England': ['Javier',0],
+    'Mexico': ['Javier',0],
+    'Morocco': ['Javier',0],
+    'South Africa': ['Javier',0],
+    'Czechia': ['Javier',0],
+    'Croatia': ['Javier',1],
+    'Portugal': ['Gill',0],
+    'Netherlands': ['Gill',0],
+    'Korea Republic': ['Gill',0],
+    'Egypt': ['Gill',0],
+    'Türkiye': ['Gill',0],
+    'Congo DR': ['Gill',1],
+    'Senegal': ['Gill',1],
   }
 
 COUNTRIES = [
@@ -119,7 +124,6 @@ ELIMINATED = [
     "Uzbekistan",
     "Korea Republic",
     "Iran"
-
 ]
 # ─────────────────────────────────────────────────────────────────────────────
 # 2. SCORING RULES
@@ -206,13 +210,14 @@ def build_member_scores():
         pts_map = calc_points(m)
         for raw_team, pts in pts_map.items():
             for member in team_to_members.get(raw_team.lower(), []):
-                scores[member]["total"] += pts
-                scores[member]["breakdown"].append({
-                    "date":    m["date"],
-                    "fixture": f"{m['home']} {m['home_goals']}–{m['away_goals']} {m['away']}",
-                    "team":    raw_team,
-                    "pts":     pts,
-                })
+                if (raw_team == "Colombia") or (raw_team in MEMBER_LOOKUP.keys() and (MEMBER_LOOKUP[raw_team][1]==0 or (MEMBER_LOOKUP[raw_team][1]==1 and date.fromisoformat(m["date"])>date.fromisoformat("2026-06-28")))):
+                  scores[member]["total"] += pts
+                  scores[member]["breakdown"].append({
+                      "date":    m["date"],
+                      "fixture": f"{m['home']} {m['home_goals']}–{m['away_goals']} {m['away']}",
+                      "team":    raw_team,
+                      "pts":     pts,
+                  })
     return scores
 
 
@@ -263,6 +268,23 @@ def strikethrough_team(team: str)->str:
         res = res + c + '\u0336'
     return res
 
+def style_teamnames(teams_list: list)->list:
+    
+  team_spans = []
+  for team in teams_list:
+      classes = []
+      if team in MEMBER_LOOKUP.keys():
+        if MEMBER_LOOKUP[team][1] == 1:
+            classes.append("team-new")
+        if MEMBER_LOOKUP[team][0] == 0:
+            classes.append("team-old")
+      if team in ELIMINATED:
+          classes.append("team-eliminated")
+
+      class_attr = f' class="{" ".join(classes)}"' if classes else ""
+      team_spans.append(f"<span{class_attr}>{team}</span>")
+  return team_spans
+
 
 def build_leaderboard_html(member_scores):
     ranked = sorted(member_scores.items(), key=lambda x: -x[1]["total"])
@@ -277,10 +299,11 @@ def build_leaderboard_html(member_scores):
         )
         empty_row = '<tr><td colspan="4" class="empty-row">No scored matches yet</td></tr>'
         teams_list = data["teams"]
-        for team_ind, team in enumerate(teams_list):
-            if team in ELIMINATED:
-                teams_list[team_ind] = strikethrough_team(team)
-        teams_str = " · ".join(teams_list)
+        # for team_ind, team in enumerate(teams_list):
+        #     if team in ELIMINATED:
+        #         teams_list[team_ind] = strikethrough_team(team)
+        team_spans = style_teamnames(teams_list=teams_list)
+        teams_str = " · ".join(team_spans)
         html += f"""
         <div class="lb-card {rank_cls}" onclick="toggleBreakdown(this)">
           <div class="lb-rank">{i}</div>
@@ -300,7 +323,7 @@ def build_leaderboard_html(member_scores):
 
 def _process_team_name(name: str):
     if name in MEMBER_LOOKUP.keys():
-        return f"({MEMBER_LOOKUP[name]})"
+        return f"({MEMBER_LOOKUP[name][0]})"
     else:
         return ""
 
@@ -496,6 +519,9 @@ HTML_TEMPLATE = """<!DOCTYPE html>
   .team.home {{ text-align: right; }}
   .team.away {{ text-align: left; }}
   .member-font {{ color: #6C5185; font-style: italic; }}
+  .team-new {{ font-style: italic; }}
+  .team-old {{ font-weight: bold; }}
+  .team-eliminated {{ text-decoration: line-through; text-decoration-color: red; }}
   .score-col {{ text-align: center; }}
   .score {{ font-size: 1.2rem; font-weight: 800; color: var(--accent); min-width: 3.5rem; }}
   .score.vs {{ font-size: .9rem; color: var(--muted); font-weight: 400; }}
