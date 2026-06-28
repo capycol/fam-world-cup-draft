@@ -261,13 +261,6 @@ def build_group_standings():
 def pts_cls(p):
     return "pts-pos" if p > 0 else ("pts-neg" if p < 0 else "pts-zero")
 
-
-def strikethrough_team(team: str)->str:
-    res = ""
-    for c in team:
-        res = res + c + '\u0336'
-    return res
-
 def style_teamnames(teams_list: list)->list:
     
   team_spans = []
@@ -299,9 +292,6 @@ def build_leaderboard_html(member_scores):
         )
         empty_row = '<tr><td colspan="4" class="empty-row">No scored matches yet</td></tr>'
         teams_list = data["teams"]
-        # for team_ind, team in enumerate(teams_list):
-        #     if team in ELIMINATED:
-        #         teams_list[team_ind] = strikethrough_team(team)
         team_spans = style_teamnames(teams_list=teams_list)
         teams_str = " · ".join(team_spans)
         html += f"""
