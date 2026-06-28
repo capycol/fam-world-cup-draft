@@ -796,7 +796,11 @@
         "home": "South Africa",
         "away": "Canada",
         "time": "20:00",
-        "location": "Los Angeles, United States"
+        "location": "Los Angeles, United States",
+        "home_goals":0,
+        "away_goals":1,
+        "home_red_cards":0,
+        "away_red_cards":0
     },
     {
         "date": "2026-06-29",
