@@ -821,7 +821,11 @@
         "home": "Brazil",
         "away": "Japan",
         "time": "18:00",
-        "location": "Houston, United States"
+        "location": "Houston, United States",
+        "home_goals":2,
+        "away_goals":1,
+        "home_red_cards":0,
+        "away_red_cards":0
     },
     {
         "date": "2026-06-30",

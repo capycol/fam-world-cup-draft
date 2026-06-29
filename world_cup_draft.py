@@ -124,7 +124,8 @@ ELIMINATED = [
     "Uzbekistan",
     "Korea Republic",
     "Iran",
-    "South Africa"
+    "South Africa",
+    "Japan"
 ]
 # ─────────────────────────────────────────────────────────────────────────────
 # 2. SCORING RULES
