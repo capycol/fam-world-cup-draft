@@ -133,12 +133,13 @@ ELIMINATED = [
 # 2. SCORING RULES
 # ─────────────────────────────────────────────────────────────────────────────
 POINTS = {
-    "win":         3,
-    "draw":        1,
-    "loss":        0,
-    "clean_sheet": 1,   # per clean sheet kept
-    "goal":        1,   # per goal scored
-    "red_card":   -1,   # per red card received
+    "win":           3,
+    "draw":          1,
+    "loss":          0,
+    "clean_sheet":   1,   # per clean sheet kept
+    "goal":          1,   # per goal scored
+    "red_card":     -1,   # per red card received
+    "penalties_win": 2,
 }
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -183,11 +184,13 @@ def calc_points(m):
     ag = m["away_goals"]
     hr = m.get("home_red_cards", 0)
     ar = m.get("away_red_cards", 0)
+    h_pw = m.get("penalties_win_home", 0)
+    a_pw = m.get("penalties_win_away", 0)
 
     result = {}
-    for team, scored, conceded, reds in [
-        (m["home"], hg, ag, hr),
-        (m["away"], ag, hg, ar),
+    for team, scored, conceded, reds, pw in [
+        (m["home"], hg, ag, hr, h_pw),
+        (m["away"], ag, hg, ar, a_pw),
     ]:
         pts = 0
         if scored > conceded:   pts += POINTS["win"]
@@ -195,6 +198,7 @@ def calc_points(m):
         if conceded == 0:       pts += POINTS["clean_sheet"]
         pts += scored * POINTS["goal"]
         pts += reds   * POINTS["red_card"]
+        pts += pw     * POINTS["penalties_win"]
         result[team] = pts
     return result
 
@@ -332,12 +336,16 @@ def build_results_html():
         ar = m.get("away_red_cards", 0)
         red_h = f' <span class="red-card">{"🟥"*hr}</span>' if hr else ""
         red_a = f' <span class="red-card">{"🟥"*ar}</span>' if ar else ""
+        h_pw = m.get("penalties_win_home", 0)
+        a_pw = m.get("penalties_win_away", 0)
+        home_pen_win = f' <span class="pen-win">{" (P)"}</span>' if h_pw==1 else ""
+        away_pen_win = f' <span class="pen-win">{" (P)"}</span>' if a_pw==1 else ""
         html += f"""
         <div class="fixture location">{m["location"]}</div>
         <div class="fixture-card">
           <div class="team home"><font class="member-font">{f"{_process_team_name(m['home'])} "}</font>{m['home']}{red_h}</div>
           <div class="score-col">
-            <div class="score">{m['home_goals']} – {m['away_goals']}</div>
+            <div class="score">{home_pen_win}{m['home_goals']} – {m['away_goals']}{away_pen_win}</div>
             <div class="fixture-meta">{m['date']}, {m['time']} <span class="badge badge-ft">FT</span></div>
           </div>
           <div class="team away">{m['away']}{red_a}<font class="member-font">{f" {_process_team_name(m['away'])}"}</font></div>
@@ -571,6 +579,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
   .pts-zero {{ color: var(--muted); }}
   .empty {{ color: var(--muted); text-align: center; padding: 3rem; font-size: .88rem; }}
   .red-card {{ font-size: .75rem; }}
+  .pen-win {{ font-size: .75rem; }}
 </style>
 </head>
 <body>
