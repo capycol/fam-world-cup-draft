@@ -125,7 +125,9 @@ ELIMINATED = [
     "Korea Republic",
     "Iran",
     "South Africa",
-    "Japan"
+    "Japan",
+    "Germany",
+    "Netherlands"
 ]
 # ─────────────────────────────────────────────────────────────────────────────
 # 2. SCORING RULES

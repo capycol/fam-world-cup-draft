@@ -807,14 +807,22 @@
         "home": "Germany",
         "away": "Paraguay",
         "time": "21:30",
-        "location": "Boston, United States"
+        "location": "Boston, United States",
+        "home_goals":1,
+        "away_goals":1,
+        "home_red_cards":0,
+        "away_red_cards":0
     },
     {
         "date": "2026-06-30",
         "home": "Netherlands",
         "away": "Morocco",
         "time": "02:00",
-        "location": "Monterrey, Mexico"
+        "location": "Monterrey, Mexico",
+        "home_goals":1,
+        "away_goals":1,
+        "home_red_cards":0,
+        "away_red_cards":0
     },
     {
         "date": "2026-06-29",
