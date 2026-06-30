@@ -566,7 +566,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
     border: 1px solid var(--border); border-radius: 10px;
     padding: 1rem 1.2rem; margin-bottom: 1rem;
   }}
-  .how-to {{ font-size: .82rem; color: var(--muted); line-height: 1.7; max-width: 540px; }}
+  .how-to {{ font-size: .82rem; color: var(--muted); line-height: 1.7; max-width: 540px; white-space: pre; }}
   .how-to code {{
     background: #1e2a3a; color: var(--accent2); padding: .1rem .35rem;
     border-radius: 3px; font-size: .8rem;
@@ -594,7 +594,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
   <button onclick="show('results',this)">📋 Results</button>
   <button onclick="show('fixtures',this)">📅 Fixtures</button>
   <button onclick="show('standings',this)">📊 Standings</button>
-  <button onclick="show('howto',this)">ℹ️ How to update</button>
+  <button onclick="show('howto',this)">ℹ️ Scoring Explained</button>
 </nav>
 
 <main>
@@ -620,30 +620,21 @@ HTML_TEMPLATE = """<!DOCTYPE html>
 </section>
 
 <section id="howto">
-  <h2>Scoring key &amp; how to update</h2>
+  <h2>Scoring key</h2>
   <div class="key-card">{scoring_key_html}</div>
 
   <div class="how-to">
-    <h3>Adding a result</h3>
-    Open <code>worldcup_dashboard.py</code> and find the <code>MATCHES</code> list.
-    For a match that has been played, add a dict with <code>home_goals</code> and <code>away_goals</code>:
-    <br><br>
-    <code>{{"date":"2026-06-19","home":"Brazil","away":"Argentina","home_goals":2,"away_goals":1}},</code>
-    <br><br>
-    If a team received red cards, add <code>home_red_cards</code> or <code>away_red_cards</code>:
-    <br><br>
-    <code>{{"date":"2026-06-19","home":"England","away":"France","home_goals":1,"away_goals":1,"home_red_cards":1}},</code>
-
-    <h3>Adding an upcoming match</h3>
-    Just omit the goals — the page will show it under Fixtures:
-    <br><br>
-    <code>{{"date":"2026-06-22","home":"Spain","away":"Germany"}},</code>
-    <br><br>
-    You can also add an optional <code>"time":"20:00 UTC"</code> field.
-
-    <h3>Regenerating the page</h3>
-    Run <code>python worldcup_dashboard.py</code> — it overwrites <code>index.html</code>.
-    Commit and push to GitHub Pages and the link updates instantly.
+    <h3>Results</h3>
+    Teams will receive the typical <code>+3</code>, <code>+1</code>, and <code>0</code> points for a
+    win, draw, and loss respectively.
+    <h3>Penalty Shootout</h3>
+    If teams are level after 120 minutes, the game will go to a penalty shootout.
+    Both teams will receive <code>+1</code> points due to finishing the regular play level.
+    The winning team in the shootout will recieve <code>+2</code> points for a <code>Penalties Win</code>
+    to make up the total of <code>+3</code> points for a win.
+    <h3>Extra points</h3>
+    Teams will receive an extra <code>+1</code> point for a <code>Goal</code> or a <code>Clean Sheet</code>.
+    They will receive <code>-1</code> point for any <code>Red Card</code> a player in their team receives.
   </div>
 </section>
 
