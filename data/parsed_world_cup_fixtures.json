@@ -982,21 +982,39 @@
         "home": "France",
         "away": "Sweden",
         "time": "22:00",
-        "location": "New York/New Jersey, United States"
+        "location": "New York/New Jersey, United States",
+        "home_goals":3,
+        "away_goals":0,
+        "home_red_cards":0,
+        "away_red_cards":0,
+        "penalties_win_home":0,
+        "penalties_win_away":0
     },
     {
         "date": "2026-06-30",
         "home": "Côte d’Ivoire",
         "away": "Norway",
         "time": "18:00",
-        "location": "Dallas, United States"
+        "location": "Dallas, United States",
+        "home_goals":1,
+        "away_goals":2,
+        "home_red_cards":0,
+        "away_red_cards":0,
+        "penalties_win_home":0,
+        "penalties_win_away":0
     },
     {
         "date": "2026-07-01",
         "home": "Mexico",
         "away": "Ecuador",
         "time": "02:00",
-        "location": "Mexico City, Mexico"
+        "location": "Mexico City, Mexico",
+        "home_goals":2,
+        "away_goals":0,
+        "home_red_cards":0,
+        "away_red_cards":1,
+        "penalties_win_home":0,
+        "penalties_win_away":0
     },
     {
         "date": "2026-07-01",
