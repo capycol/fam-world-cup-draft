@@ -127,7 +127,11 @@ ELIMINATED = [
     "South Africa",
     "Japan",
     "Germany",
-    "Netherlands"
+    "Netherlands",
+    "Congo DR",
+    "Senegal",
+    "Ecuador",
+    "Sweden"
 ]
 # ─────────────────────────────────────────────────────────────────────────────
 # 2. SCORING RULES
