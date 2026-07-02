@@ -1021,21 +1021,39 @@
         "home": "England",
         "away": "Congo DR",
         "time": "17:00",
-        "location": "Atlanta, United States"
+        "location": "Atlanta, United States",
+        "home_goals":2,
+        "away_goals":1,
+        "home_red_cards":0,
+        "away_red_cards":0,
+        "penalties_win_home":0,
+        "penalties_win_away":0
     },
     {
         "date": "2026-07-02",
         "home": "United States",
         "away": "Bosnia and Herzegovina",
         "time": "01:00",
-        "location": "San Francisco Bay Area, United States"
+        "location": "San Francisco Bay Area, United States",
+        "home_goals":2,
+        "away_goals":0,
+        "home_red_cards":1,
+        "away_red_cards":0,
+        "penalties_win_home":0,
+        "penalties_win_away":0
     },
     {
         "date": "2026-07-01",
         "home": "Belgium",
         "away": "Senegal",
         "time": "21:00",
-        "location": "Seattle, United States"
+        "location": "Seattle, United States",
+        "home_goals":3,
+        "away_goals":2,
+        "home_red_cards":0,
+        "away_red_cards":0,
+        "penalties_win_home":0,
+        "penalties_win_away":0
     },
     {
         "date": "2026-07-03",
