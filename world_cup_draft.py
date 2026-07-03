@@ -131,7 +131,11 @@ ELIMINATED = [
     "Congo DR",
     "Senegal",
     "Ecuador",
-    "Sweden"
+    "Sweden",
+    "Algeria",
+    "Croatia",
+    "Austria",
+    "Bosnia and Herzegovina"
 ]
 # ─────────────────────────────────────────────────────────────────────────────
 # 2. SCORING RULES
