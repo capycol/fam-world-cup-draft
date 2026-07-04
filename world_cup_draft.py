@@ -107,7 +107,8 @@ COUNTRIES = [
     "Panama",
     "Australia",
     "Cabo Verde",
-    "Ghana"
+    "Ghana",
+    "Côte d’Ivoire",
 ]
 
 ELIMINATED = [
