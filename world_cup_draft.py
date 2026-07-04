@@ -104,7 +104,10 @@ COUNTRIES = [
     "England",
     "France",
     "Saudi Arabia",
-    "Panama"
+    "Panama",
+    "Australia",
+    "Cabo Verde",
+    "Ghana"
 ]
 
 ELIMINATED = [
