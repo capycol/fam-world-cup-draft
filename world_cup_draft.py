@@ -104,11 +104,7 @@ COUNTRIES = [
     "England",
     "France",
     "Saudi Arabia",
-    "Panama",
-    "Australia",
-    "Cabo Verde",
-    "Ghana",
-    "Côte d’Ivoire",
+    "Panama"
 ]
 
 ELIMINATED = [
@@ -139,7 +135,11 @@ ELIMINATED = [
     "Algeria",
     "Croatia",
     "Austria",
-    "Bosnia and Herzegovina"
+    "Bosnia and Herzegovina",
+    "Australia",
+    "Cabo Verde",
+    "Ghana",
+    "Côte d’Ivoire",
 ]
 # ─────────────────────────────────────────────────────────────────────────────
 # 2. SCORING RULES
