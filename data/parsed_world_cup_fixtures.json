@@ -1099,103 +1099,121 @@
         "home": "Argentina",
         "away": "Cabo Verde",
         "time": "23:00",
-        "location": "Miami, United States"
+        "location": "Miami, United States",
+        "home_goals":3,
+        "away_goals":2,
+        "home_red_cards":0,
+        "away_red_cards":0,
+        "penalties_win_home":0,
+        "penalties_win_away":0
     },
     {
         "date": "2026-07-04",
         "home": "Colombia",
         "away": "Ghana",
         "time": "02:30",
-        "location": "Kansas City, United States"
+        "location": "Kansas City, United States",
+        "home_goals":1,
+        "away_goals":0,
+        "home_red_cards":0,
+        "away_red_cards":0,
+        "penalties_win_home":0,
+        "penalties_win_away":0
     },
     {
         "date": "2026-07-03",
         "home": "Australia",
         "away": "Egypt",
         "time": "19:00",
-        "location": "Dallas, United States"
+        "location": "Dallas, United States",
+        "home_goals":1,
+        "away_goals":1,
+        "home_red_cards":0,
+        "away_red_cards":0,
+        "penalties_win_home":0,
+        "penalties_win_away":1
     },
     {
         "date": "2026-07-04",
-        "home": "Match 74 Winner",
-        "away": "Match 77 Winner",
+        "home": "Paraguay",
+        "away": "France",
         "time": "22:00",
         "location": "Philadelphia, United States"
     },
     {
         "date": "2026-07-04",
-        "home": "Match 73 Winner",
-        "away": "Match 75 Winner",
+        "home": "Canada",
+        "away": "Morocco",
         "time": "18:00",
         "location": "Houston, United States"
     },
     {
         "date": "2026-07-05",
-        "home": "Match 76 Winner",
-        "away": "Match 78 Winner",
+        "home": "Brazil",
+        "away": "Norway",
         "time": "21:00",
         "location": "New York/New Jersey, United States"
     },
     {
         "date": "2026-07-06",
-        "home": "Match 79 Winner",
-        "away": "Match 80 Winner",
+        "home": "Mexico",
+        "away": "England",
         "time": "01:00",
         "location": "Mexico City, Mexico"
     },
     {
         "date": "2026-07-06",
-        "home": "Match 83 Winner",
-        "away": "Match 84 Winner",
+        "home": "Portugal",
+        "away": "Spain",
         "time": "20:00",
         "location": "Dallas, United States"
     },
     {
         "date": "2026-07-07",
-        "home": "Match 81 Winner",
-        "away": "Match 82 Winner",
+        "home": "United States",
+        "away": "Belgium",
         "time": "01:00",
         "location": "Seattle, United States"
     },
     {
         "date": "2026-07-07",
-        "home": "Match 86 Winner",
-        "away": "Match 88 Winner",
+        "home": "Argentina",
+        "away": "Egypt",
         "time": "17:00",
         "location": "Atlanta, United States"
     },
     {
         "date": "2026-07-07",
-        "home": "Match 85 Winner",
-        "away": "Match 87 Winner",
+        "home": "Switzerland",
+        "away": "Colombia",
         "time": "21:00",
         "location": "Vancouver, Canada"
     },
     {
         "date": "2026-07-09",
-        "home": "Match 89 Winner",
-        "away": "Match 90 Winner",
+        "home": "Paraguay/France",
+        "away": "Canada/Morocco",
         "time": "21:00",
         "location": "Boston, United States"
     },
     {
         "date": "2026-07-10",
-        "home": "Match 93 Winner",
-        "away": "Match 94 Winner",
+        "home": "Portugal/Spain",
+        "away": "United States/Belgium",
         "time": "20:00",
         "location": "Los Angeles, United States"
     },
     {
         "date": "2026-07-11",
-        "home": "Match 91 Winner",
-        "away": "Match 92 Winner",
+        "home": "Brazil/Norway",
+        "away": "Mexico/England",
         "time": "22:00",
         "location": "Miami, United States"
     },
     {
         "date": "2026-07-12",
-        "home": "Match 95 Winner",
-        "away": "Match 96 Winner",
+        "home": "Argentina/Egypt",
+        "away": "Switzerland/Colombia",
         "time": "02:00",
         "location": "Kansas City, United States"
     },
