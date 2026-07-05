@@ -140,6 +140,8 @@ ELIMINATED = [
     "Cabo Verde",
     "Ghana",
     "Côte d’Ivoire",
+    "Canada",
+    "Ecuador"
 ]
 # ─────────────────────────────────────────────────────────────────────────────
 # 2. SCORING RULES

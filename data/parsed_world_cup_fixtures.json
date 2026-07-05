@@ -1138,14 +1138,26 @@
         "home": "Paraguay",
         "away": "France",
         "time": "22:00",
-        "location": "Philadelphia, United States"
+        "location": "Philadelphia, United States",
+        "home_goals":0,
+        "away_goals":1,
+        "home_red_cards":0,
+        "away_red_cards":0,
+        "penalties_win_home":0,
+        "penalties_win_away":0
     },
     {
         "date": "2026-07-04",
         "home": "Canada",
         "away": "Morocco",
         "time": "18:00",
-        "location": "Houston, United States"
+        "location": "Houston, United States",
+        "home_goals":0,
+        "away_goals":3,
+        "home_red_cards":0,
+        "away_red_cards":0,
+        "penalties_win_home":0,
+        "penalties_win_away":0
     },
     {
         "date": "2026-07-05",
