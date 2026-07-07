@@ -1229,7 +1229,13 @@
         "home": "Switzerland",
         "away": "Colombia",
         "time": "21:00",
-        "location": "Vancouver, Canada"
+        "location": "Vancouver, Canada",
+        "home_goals":0,
+        "away_goals":0,
+        "home_red_cards":0,
+        "away_red_cards":0,
+        "penalties_win_home":1,
+        "penalties_win_away":0
     },
     {
         "date": "2026-07-09",
@@ -1255,7 +1261,7 @@
     {
         "date": "2026-07-12",
         "home": "Argentina",
-        "away": "Switzerland/Colombia",
+        "away": "Switzerland",
         "time": "02:00",
         "location": "Kansas City, United States"
     },
