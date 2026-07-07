@@ -141,7 +141,12 @@ ELIMINATED = [
     "Ghana",
     "Côte d’Ivoire",
     "Canada",
-    "Ecuador"
+    "Ecuador",
+    "United States",
+    "Brazil",
+    "Egypt",
+    "Mexico",
+    "Paraguay"
 ]
 # ─────────────────────────────────────────────────────────────────────────────
 # 2. SCORING RULES
