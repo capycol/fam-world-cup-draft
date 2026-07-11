@@ -147,7 +147,9 @@ ELIMINATED = [
     "Mexico",
     "Paraguay",
     "Colombia",
-    "Portugal"
+    "Portugal",
+    "Belgium",
+    "Morocco"
 ]
 # ─────────────────────────────────────────────────────────────────────────────
 # 2. SCORING RULES
