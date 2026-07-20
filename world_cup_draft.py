@@ -149,7 +149,12 @@ ELIMINATED = [
     "Colombia",
     "Portugal",
     "Belgium",
-    "Morocco"
+    "Morocco",
+    "England",
+    "France",
+    "Argentina",
+    "Norway",
+    "Switzerland"
 ]
 # ─────────────────────────────────────────────────────────────────────────────
 # 2. SCORING RULES

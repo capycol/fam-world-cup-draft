@@ -1268,41 +1268,77 @@
         "home": "Norway",
         "away": "England",
         "time": "22:00",
-        "location": "Miami, United States"
+        "location": "Miami, United States",
+        "home_goals":2,
+        "away_goals":1,
+        "home_red_cards":0,
+        "away_red_cards":0,
+        "penalties_win_home":0,
+        "penalties_win_away":0
     },
     {
         "date": "2026-07-12",
         "home": "Argentina",
         "away": "Switzerland",
         "time": "02:00",
-        "location": "Kansas City, United States"
+        "location": "Kansas City, United States",
+        "home_goals":2,
+        "away_goals":1,
+        "home_red_cards":0,
+        "away_red_cards":0,
+        "penalties_win_home":0,
+        "penalties_win_away":0
     },
     {
         "date": "2026-07-14",
         "home": "France",
         "away": "Spain",
         "time": "20:00",
-        "location": "Dallas, United States"
+        "location": "Dallas, United States",
+        "home_goals":0,
+        "away_goals":2,
+        "home_red_cards":0,
+        "away_red_cards":0,
+        "penalties_win_home":0,
+        "penalties_win_away":0
     },
     {
         "date": "2026-07-15",
-        "home": "Norway/England",
-        "away": "Argentina/Switzerland",
+        "home": "England",
+        "away": "Argentina",
         "time": "20:00",
-        "location": "Atlanta, United States"
+        "location": "Atlanta, United States",
+        "home_goals":1,
+        "away_goals":2,
+        "home_red_cards":0,
+        "away_red_cards":0,
+        "penalties_win_home":0,
+        "penalties_win_away":0
     },
     {
         "date": "2026-07-18",
-        "home": "Match 101 Loser",
-        "away": "Match 102 Loser",
+        "home": "France",
+        "away": "England",
         "time": "22:00",
-        "location": "Miami, United States"
+        "location": "Miami, United States",
+        "home_goals":4,
+        "away_goals":6,
+        "home_red_cards":0,
+        "away_red_cards":0,
+        "penalties_win_home":0,
+        "penalties_win_away":0
     },
     {
         "date": "2026-07-19",
-        "home": "Match 101 Winner",
-        "away": "Match 102 Winner",
+        "home": "Spain",
+        "away": "Argentina",
         "time": "20:00",
-        "location": "New York/New Jersey, United States"
+        "location": "New York/New Jersey, United States",
+        "home_goals":1,
+        "away_goals":0,
+        "home_red_cards":0,
+        "away_red_cards":1,
+        "penalties_win_home":0,
+        "penalties_win_away":0
     }
 ]
